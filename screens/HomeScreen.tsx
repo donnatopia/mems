@@ -2,10 +2,11 @@ import { Text, SafeAreaView, View, Image, TouchableOpacity } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import * as Animatable from 'react-native-animatable';
+import { RootStackParamList } from '../types';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 
 export default function HomeScreen() {
-
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -43,7 +44,10 @@ export default function HomeScreen() {
 
       {/* Go Button */}
       <View className='flex-1 relative items-center justify-center'>
-        <TouchableOpacity className='bottom-20 w-24 h-24 rounded-full absolute items-center justify-center border-primary border-r-2 border-l-2 border-t-4'>
+        <TouchableOpacity
+          onPress={ () => {navigation.navigate('Collection')} }
+          className='bottom-20 w-24 h-24 rounded-full absolute items-center justify-center border-primary border-r-2 border-l-2 border-t-4'
+        >
           <Animatable.View
             animation={'pulse'}
             easing='ease-in-out'

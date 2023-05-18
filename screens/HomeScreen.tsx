@@ -43,18 +43,16 @@ export default function HomeScreen() {
 
       {/* Go Button */}
       <View className='flex-1 relative items-center justify-center'>
-        <View className='bottom-20 w-24 h-24 rounded-full absolute items-center justify-center border-primary border-r-2 border-l-2 border-t-4'>
-          <TouchableOpacity>
-            <Animatable.View
-              animation={'pulse'}
-              easing='ease-in-out'
-              iterationCount={'infinite'}
-              className='w-20 h-20 items-center justify-center rounded-full bg-primary'
-            >
-              <Text className='text-gray-50 text-lg font-semibold'>Go</Text>
-            </Animatable.View>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity className='bottom-20 w-24 h-24 rounded-full absolute items-center justify-center border-primary border-r-2 border-l-2 border-t-4'>
+          <Animatable.View
+            animation={'pulse'}
+            easing='ease-in-out'
+            iterationCount={'infinite'}
+            className='w-20 h-20 items-center justify-center rounded-full bg-primary'
+          >
+            <Text className='text-gray-50 text-lg font-semibold'>Go</Text>
+          </Animatable.View>
+        </TouchableOpacity>
       </View>
 
     </SafeAreaView>

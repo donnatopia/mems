@@ -7,7 +7,7 @@ const BackButton = () => {
   const navigation = useNavigation();
 
   return (
-    <TouchableOpacity onPress={() => navigation.goBack()}>
+    <TouchableOpacity onPress={() => navigation.goBack()} className='mr-80'>
       <Icon
         name='arrow-circle-left'
         type='font-awesome'

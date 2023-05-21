@@ -1,9 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MapHome from './screens/Map/Home';
+import FindAMap from './screens/Map/FindAMap';
 
 type RootStackParamList = {
-  MapHome: undefined
+  MapHome: undefined;
+  'Find a Map': undefined;
 }
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
@@ -13,6 +15,7 @@ export default function App() {
     <NavigationContainer>
       <Navigator initialRouteName='MapHome'>
         <Screen name='MapHome' component={ MapHome } />
+        <Screen name='Find a Map' component={ FindAMap } />
       </Navigator>
     </NavigationContainer>
   );

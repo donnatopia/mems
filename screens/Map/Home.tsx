@@ -22,7 +22,7 @@ export default function Home() {
       {/* Logo */}
       <View className='px-6'>
         <Image
-          source={require('../assets/logo.png')}
+          source={require('../../assets/logo.png')}
           style={{ width: 115, height: 115 }}
         />
       </View>
@@ -60,7 +60,7 @@ export default function Home() {
 
       <View className='px-8 py-3'>
         <Button
-          onPress={() => console.log('hello world')}
+          onPress={() => navigation.navigate('Find a Map')}
           text='Change Selection'
           variety='secondary'
         />

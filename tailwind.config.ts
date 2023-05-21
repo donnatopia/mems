@@ -11,6 +11,7 @@ module.exports = {
         font: {
           1: '#CCCED6',
           2: '#BAB1B1',
+          3: '#86939E',
         },
         theme: {
           1: '#0097B2',

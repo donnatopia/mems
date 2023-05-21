@@ -3,9 +3,9 @@ import React, { useLayoutEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { RootStackParamList } from '../../types';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Card from '../../components/Card';
-import Button from '../../components/Button';
-import FilterCollected from '../../components/FilterCollected';
+import Card from '../../components/Map/Card';
+import Button from '../../components/Map/Button';
+import FilterCollected from '../../components/Map/FilterCollected';
 
 export default function Home() {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();

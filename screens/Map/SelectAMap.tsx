@@ -31,12 +31,36 @@ const SelectAMap = () => {
         <FilterCollected />
       </View>
       <View className='px-4 py-2 flex-col space-y-2 overflow-y-scroll'>
-        <Card icon='compass' title='California' subtitle='234 Places'/>
-        <Card icon='compass' title='California' subtitle='234 Places'/>
-        <Card icon='compass' title='California' subtitle='234 Places'/>
-        <Card icon='compass' title='California' subtitle='234 Places'/>
-        <Card icon='compass' title='California' subtitle='234 Places'/>
-
+        <Card
+          icon='compass'
+          title='California'
+          subtitle='234 Places'
+          onPress={() => navigation.navigate('MapHome')}
+        />
+        <Card
+          icon='compass'
+          title='California'
+          subtitle='234 Places'
+          onPress={() => navigation.navigate('MapHome')}
+        />
+        <Card
+          icon='compass'
+          title='California'
+          subtitle='234 Places'
+          onPress={() => navigation.navigate('MapHome')}
+        />
+        <Card
+          icon='compass'
+          title='California'
+          subtitle='234 Places'
+          onPress={() => navigation.navigate('MapHome')}
+        />
+        <Card
+          icon='compass'
+          title='California'
+          subtitle='234 Places'
+          onPress={() => navigation.navigate('MapHome')}
+        />
         {/* create carousel to change pages */}
       </View>
     </SafeAreaView>

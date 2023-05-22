@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Icon } from '@rneui/themed';
 
@@ -6,11 +6,12 @@ interface CardProps {
   icon: string;
   title: string;
   subtitle: string;
+  onPress?: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ icon, title, subtitle }) => {
+const Card: React.FC<CardProps> = ({ icon, title, subtitle, onPress }) => {
   return (
-    <View className='border-2 border-[#BAB1B1] p-3 rounded-2xl flex-row items-center space-x-4 my-2'>
+    <TouchableOpacity className='border-2 border-[#BAB1B1] p-3 rounded-2xl flex-row items-center space-x-4 my-2' onPress={onPress}>
       <Icon
         name={ icon }
         type='font-awesome'
@@ -20,7 +21,7 @@ const Card: React.FC<CardProps> = ({ icon, title, subtitle }) => {
         <Text className='text-font-2 font-bold text-lg'>{ title }</Text>
         <Text className='text-font-2'>{ subtitle }</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   )
 }
 

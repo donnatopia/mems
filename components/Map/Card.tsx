@@ -10,7 +10,7 @@ interface CardProps {
 
 const Card: React.FC<CardProps> = ({ icon, title, subtitle }) => {
   return (
-    <View className='border-2 border-[#BAB1B1] p-3 rounded-2xl flex-row items-center space-x-4'>
+    <View className='border-2 border-[#BAB1B1] p-3 rounded-2xl flex-row items-center space-x-4 my-2'>
       <Icon
         name={ icon }
         type='font-awesome'

@@ -4,9 +4,12 @@ import { useNavigation } from '@react-navigation/native'
 import BackButton from '../../components/BackButton';
 import Search from '../../components/Search';
 import GuideCard from '../../components/Map/GuideCard';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-const FindAMap = () => {
-  const navigation = useNavigation();
+type Props = NativeStackScreenProps<RootStackParamList>
+
+const FindAMap = ({navigation}: Props) => {
   const [input, setInput] = useState('');
   const guides = [
     {
@@ -55,7 +58,7 @@ const FindAMap = () => {
         {
           guides.map((guide, index) => (
             <GuideCard
-              key={`guide=${index}`}
+              key={`guide-${index}`}
               title={ guide.title }
               maps={ guide.maps }
               places={ guide.places }

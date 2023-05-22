@@ -1,12 +1,14 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React, { useLayoutEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
 import BackButton from '../../components/BackButton';
 import FilterCollected from '../../components/Map/FilterCollected';
 import Card from '../../components/Map/Card';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 
-const SelectAMap = () => {
-  const navigation = useNavigation();
+type Props = NativeStackScreenProps<RootStackParamList>
+
+const SelectAMap = ({navigation}: Props) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -35,31 +37,31 @@ const SelectAMap = () => {
           icon='compass'
           title='California'
           subtitle='234 Places'
-          onPress={() => navigation.navigate('MapHome')}
+          onPress={() => navigation.navigate('Map Home')}
         />
         <Card
           icon='compass'
           title='California'
           subtitle='234 Places'
-          onPress={() => navigation.navigate('MapHome')}
+          onPress={() => navigation.navigate('Map Home')}
         />
         <Card
           icon='compass'
           title='California'
           subtitle='234 Places'
-          onPress={() => navigation.navigate('MapHome')}
+          onPress={() => navigation.navigate('Map Home')}
         />
         <Card
           icon='compass'
           title='California'
           subtitle='234 Places'
-          onPress={() => navigation.navigate('MapHome')}
+          onPress={() => navigation.navigate('Map Home')}
         />
         <Card
           icon='compass'
           title='California'
           subtitle='234 Places'
-          onPress={() => navigation.navigate('MapHome')}
+          onPress={() => navigation.navigate('Map Home')}
         />
         {/* create carousel to change pages */}
       </View>

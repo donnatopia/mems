@@ -1,14 +1,14 @@
 import { Text, SafeAreaView, View, Image } from 'react-native'
 import React, { useLayoutEffect } from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { RootStackParamList } from '../../types';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Card from '../../components/Map/Card';
 import Button from '../../components/Map/Button';
 import FilterCollected from '../../components/Map/FilterCollected';
+import { RootStackParamList } from '../../App';
 
-export default function Home() {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+type Props = NativeStackScreenProps<RootStackParamList, 'Map Home'>;
+
+export default function Home({navigation}: Props) {
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -52,7 +52,7 @@ export default function Home() {
       {/* Buttons */}
       <View className='px-8'>
         <Button
-          onPress={() => console.log('hello world')}
+          onPress={() => navigation.navigate('Map')}
           text='Show Map'
           variety='primary'
         />
@@ -68,7 +68,7 @@ export default function Home() {
 
       <View className='px-8'>
         <Button
-          onPress={() => console.log('hello world')}
+          onPress={() => navigation.navigate('Find a Map')}
           text='All Maps'
           variety='secondary'
         />

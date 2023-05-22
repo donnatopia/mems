@@ -5,6 +5,7 @@ import PlaceCard from '../../components/Map/PlaceCard';
 import Button from '../../components/Map/Button';
 import FilterCollected from '../../components/Map/FilterCollected';
 import { RootStackParamList } from '../../App';
+import { CompassIcon, SelectedIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Map Home'>;
 
@@ -38,8 +39,8 @@ export default function Home({navigation}: Props) {
       {/* Selected Place */}
       <View className='px-8 flex-col'>
         <PlaceCard
-          leftIcon='compass'
-          rightIcon='bookmark'
+          leftIcon={<CompassIcon />}
+          rightIcon={<SelectedIcon />}
           title='California'
           subtitle='123 Places'
         />

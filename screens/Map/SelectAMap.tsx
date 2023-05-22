@@ -5,6 +5,7 @@ import FilterCollected from '../../components/Map/FilterCollected';
 import PlaceCard from '../../components/Map/PlaceCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
+import { CompassIcon, RightIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
 
 type Props = NativeStackScreenProps<RootStackParamList>
 
@@ -34,36 +35,36 @@ const SelectAMap = ({navigation}: Props) => {
       </View>
       <View className='px-4 py-2 flex-col space-y-2'>
         <PlaceCard
-          leftIcon='compass'
-          rightIcon='arrow-circle-right'
+          leftIcon={<CompassIcon />}
+          rightIcon={<RightIcon />}
           title='California'
           subtitle='234 Places'
           onPress={() => navigation.navigate('About a Map')}
         />
         <PlaceCard
-          leftIcon='compass'
-          rightIcon='bookmark-o'
+          leftIcon={<CompassIcon />}
+          rightIcon={<ToBeSelectedIcon />}
           title='Oregon'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
         <PlaceCard
-          leftIcon='compass'
-          rightIcon='bookmark-o'
+          leftIcon={<CompassIcon />}
+          rightIcon={<ToBeSelectedIcon />}
           title='Washington'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
         <PlaceCard
-          leftIcon='compass'
-          rightIcon='bookmark-o'
+          leftIcon={<CompassIcon />}
+          rightIcon={<ToBeSelectedIcon />}
           title='Texas'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
         <PlaceCard
-          leftIcon='compass'
-          rightIcon='bookmark-o'
+          leftIcon={<CompassIcon />}
+          rightIcon={<ToBeSelectedIcon />}
           title='Florida'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}

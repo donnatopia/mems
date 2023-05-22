@@ -5,6 +5,7 @@ import { RootStackParamList } from '../../App'
 import BackButton from '../../components/BackButton'
 import FilterCollected from '../../components/Map/FilterCollected'
 import PlaceCard from '../../components/Map/PlaceCard'
+import { CollectedIcon, LocationIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
 
 type Props = NativeStackScreenProps<RootStackParamList>
 
@@ -30,32 +31,32 @@ const AboutAMap = ({navigation}: Props) => {
       </View>
       <View className='px-4 py-2 flex-col space-y-2'>
         <PlaceCard
-          leftIcon='thumb-tack'
-          rightIcon='arrow-circle-right'
+          leftIcon={<LocationIcon />}
+          rightIcon={<CollectedIcon />}
           title='Oakland Museum'
           subtitle='234 Places'
         />
         <PlaceCard
-          leftIcon='thumb-tack'
-          rightIcon='arrow-circle-right'
+          leftIcon={<LocationIcon />}
+          rightIcon={<NotCollectedIcon />}
           title='Children Fairyland'
           subtitle='234 Places'
         />
         <PlaceCard
-          leftIcon='thumb-tack'
-          rightIcon='arrow-circle-right'
+          leftIcon={<LocationIcon />}
+          rightIcon={<OutOfOrderIcon />}
           title='USS Hornet '
           subtitle='234 Places'
         />
         <PlaceCard
-          leftIcon='thumb-tack'
-          rightIcon='arrow-circle-right'
+          leftIcon={<LocationIcon />}
+          rightIcon={<NotCollectedIcon />}
           title='Lake Merritt'
           subtitle='234 Places'
         />
         <PlaceCard
-          leftIcon='thumb-tack'
-          rightIcon='arrow-circle-right'
+          leftIcon={<LocationIcon />}
+          rightIcon={<CollectedIcon />}
           title='Fruitvale'
           subtitle='234 Places'
         />

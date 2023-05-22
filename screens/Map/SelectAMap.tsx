@@ -32,39 +32,39 @@ const SelectAMap = ({navigation}: Props) => {
       <View className='py-3 w-4/5 mx-auto'>
         <FilterCollected />
       </View>
-      <View className='px-4 py-2 flex-col space-y-2 overflow-y-scroll'>
+      <View className='px-4 py-2 flex-col space-y-2'>
+        <PlaceCard
+          leftIcon='compass'
+          rightIcon='arrow-circle-right'
+          title='California'
+          subtitle='234 Places'
+          onPress={() => navigation.navigate('About a Map')}
+        />
         <PlaceCard
           leftIcon='compass'
           rightIcon='bookmark-o'
-          title='California'
+          title='Oregon'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
         <PlaceCard
           leftIcon='compass'
           rightIcon='bookmark-o'
-          title='California'
+          title='Washington'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
         <PlaceCard
           leftIcon='compass'
           rightIcon='bookmark-o'
-          title='California'
+          title='Texas'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
         <PlaceCard
           leftIcon='compass'
           rightIcon='bookmark-o'
-          title='California'
-          subtitle='234 Places'
-          onPress={() => navigation.navigate('Map Home')}
-        />
-        <PlaceCard
-          leftIcon='compass'
-          rightIcon='bookmark-o'
-          title='California'
+          title='Florida'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />

@@ -4,12 +4,14 @@ import MapHome from './screens/Map/Home';
 import FindAMap from './screens/Map/FindAMap';
 import SelectAMap from './screens/Map/SelectAMap';
 import Map from './screens/Map/Map';
+import AboutAMap from './screens/Map/AboutAMap';
 
 export type RootStackParamList = {
   'Map Home': undefined;
   'Map': undefined;
   'Find a Map': undefined;
   'Select a Map': undefined;
+  'About a Map': undefined;
 }
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
@@ -22,6 +24,7 @@ export default function App() {
         <Screen name='Map' component={ Map } />
         <Screen name='Find a Map' component={ FindAMap } />
         <Screen name='Select a Map' component={ SelectAMap } />
+        <Screen name='About a Map' component={ AboutAMap } />
       </Navigator>
     </NavigationContainer>
   );

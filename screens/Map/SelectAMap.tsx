@@ -2,7 +2,7 @@ import { View, Text, SafeAreaView } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import BackButton from '../../components/BackButton';
 import FilterCollected from '../../components/Map/FilterCollected';
-import Card from '../../components/Map/Card';
+import PlaceCard from '../../components/Map/PlaceCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 
@@ -33,32 +33,37 @@ const SelectAMap = ({navigation}: Props) => {
         <FilterCollected />
       </View>
       <View className='px-4 py-2 flex-col space-y-2 overflow-y-scroll'>
-        <Card
-          icon='compass'
+        <PlaceCard
+          leftIcon='compass'
+          rightIcon='bookmark-o'
           title='California'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
-        <Card
-          icon='compass'
+        <PlaceCard
+          leftIcon='compass'
+          rightIcon='bookmark-o'
           title='California'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
-        <Card
-          icon='compass'
+        <PlaceCard
+          leftIcon='compass'
+          rightIcon='bookmark-o'
           title='California'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
-        <Card
-          icon='compass'
+        <PlaceCard
+          leftIcon='compass'
+          rightIcon='bookmark-o'
           title='California'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}
         />
-        <Card
-          icon='compass'
+        <PlaceCard
+          leftIcon='compass'
+          rightIcon='bookmark-o'
           title='California'
           subtitle='234 Places'
           onPress={() => navigation.navigate('Map Home')}

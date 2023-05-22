@@ -1,7 +1,7 @@
 import { Text, SafeAreaView, View, Image } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Card from '../../components/Map/Card';
+import PlaceCard from '../../components/Map/PlaceCard';
 import Button from '../../components/Map/Button';
 import FilterCollected from '../../components/Map/FilterCollected';
 import { RootStackParamList } from '../../App';
@@ -37,8 +37,9 @@ export default function Home({navigation}: Props) {
 
       {/* Selected Place */}
       <View className='px-8 flex-col'>
-        <Card
-          icon='map'
+        <PlaceCard
+          leftIcon='compass'
+          rightIcon='bookmark'
           title='California'
           subtitle='123 Places'
         />

@@ -1,6 +1,5 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React, { useLayoutEffect, useState } from 'react'
-import { useNavigation } from '@react-navigation/native'
 import BackButton from '../../components/BackButton';
 import Search from '../../components/Search';
 import GuideCard from '../../components/Map/GuideCard';

@@ -11,7 +11,11 @@ export type RootStackParamList = {
   'Map Home': undefined;
   'Map': undefined;
   'Find a Map': undefined;
-  'Select a Map': undefined;
+  'Select a Map': {
+    title: string,
+    maps: number,
+    places: number
+  };
   'About a Map': undefined;
   'About a Location': undefined;
 }

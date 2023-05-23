@@ -5,33 +5,13 @@ import Search from '../../components/Search';
 import GuideCard from '../../components/Map/GuideCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
+import { guides } from '../../data'
 
 type Props = NativeStackScreenProps<RootStackParamList>
 
 const FindAMap = ({navigation}: Props) => {
   const [input, setInput] = useState('');
-  const guides = [
-    {
-      title: 'All Maps',
-      maps: 88,
-      places: 12447
-    },
-    {
-      title: 'Favorites',
-      maps: 5,
-      places: 3123
-    },
-    {
-      title: 'United States',
-      maps: 52,
-      places: 10658
-    },
-    {
-      title: 'International',
-      maps: 36,
-      places: 1789
-    },
-  ];
+
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -61,6 +41,11 @@ const FindAMap = ({navigation}: Props) => {
               title={ guide.title }
               maps={ guide.maps }
               places={ guide.places }
+              onPress={() => navigation.navigate('Select a Map', {
+                title: guide.title,
+                maps: guide.maps,
+                places: guide.places
+              })}
             />
           ))
         }

@@ -63,15 +63,7 @@ export default function Home({navigation}: Props) {
       <View className='px-8 py-3'>
         <Button
           onPress={() => navigation.navigate('Find a Map')}
-          text='Change Selection'
-          variety='secondary'
-        />
-      </View>
-
-      <View className='px-8'>
-        <Button
-          onPress={() => navigation.navigate('Find a Map')}
-          text='All Maps'
+          text='Find a Map'
           variety='secondary'
         />
       </View>

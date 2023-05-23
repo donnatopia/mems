@@ -7,16 +7,17 @@ interface GuideCardProps {
   title: string;
   maps: number;
   places: number;
+  onPress: () => void;
 }
 
-const GuideCard: React.FC<GuideCardProps> = ({ title, maps, places }) => {
+const GuideCard: React.FC<GuideCardProps> = ({ title, maps, places, onPress }) => {
   const navigation = useNavigation();
 
   return (
     <View className='mb-4 w-[44vw]'>
       <TouchableOpacity
         className='border-2 border-font-2 p-2 rounded-2xl'
-        onPress={() => navigation.navigate('Select a Map')}
+        onPress={ onPress }
       >
         <Icon
           name='globe'

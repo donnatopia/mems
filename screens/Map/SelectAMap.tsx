@@ -7,9 +7,11 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { CompassIcon, RightIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
 
-type Props = NativeStackScreenProps<RootStackParamList>
+type Props = NativeStackScreenProps<RootStackParamList, 'Select a Map'>
 
-const SelectAMap = ({navigation}: Props) => {
+const SelectAMap = ({ route, navigation }: Props) => {
+
+  const { title, maps, places } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -23,11 +25,13 @@ const SelectAMap = ({navigation}: Props) => {
         <BackButton />
       </View>
       <View className='pt-3'>
-        <Text className='text-3xl text-theme-2 font-extrabold text-center'>United States</Text>
+        <Text className='text-3xl text-theme-2 font-extrabold text-center'>{ title }</Text>
         <View className='flex-row justify-center space-x-4'>
-          <Text className='text-lg text-font-3 text-center'>52 Maps</Text>
+          <Text className='text-lg text-font-3 text-center'>
+            { maps } Map{ maps !== 1 ? 's' : null }
+          </Text>
           <Text className='text-lg text-font-3 text-center font-bold'>|</Text>
-          <Text className='text-lg text-font-3 text-center'>101234 Places</Text>
+          <Text className='text-lg text-font-3 text-center'>{ places } Places</Text>
         </View>
       </View>
       <View className='py-3 w-4/5 mx-auto'>

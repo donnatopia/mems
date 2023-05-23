@@ -19,6 +19,11 @@ module.exports = {
         },
         primary: '#0097B2',
         secondary: '#0CC0DF',
+        legend: {
+          green: '#00B267',
+          red: '#B22000',
+          yellow: '#B28B00',
+        }
       }
     },
   },

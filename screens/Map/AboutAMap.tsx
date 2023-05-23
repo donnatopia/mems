@@ -35,30 +35,35 @@ const AboutAMap = ({navigation}: Props) => {
           rightIcon={<CollectedIcon />}
           title='Oakland Museum'
           subtitle='234 Places'
+          onPress={() => navigation.navigate('About a Location')}
         />
         <PlaceCard
           leftIcon={<LocationIcon />}
           rightIcon={<NotCollectedIcon />}
           title='Children Fairyland'
           subtitle='234 Places'
+          onPress={() => navigation.navigate('About a Location')}
         />
         <PlaceCard
           leftIcon={<LocationIcon />}
           rightIcon={<OutOfOrderIcon />}
           title='USS Hornet '
           subtitle='234 Places'
+          onPress={() => navigation.navigate('About a Location')}
         />
         <PlaceCard
           leftIcon={<LocationIcon />}
           rightIcon={<NotCollectedIcon />}
           title='Lake Merritt'
           subtitle='234 Places'
+          onPress={() => navigation.navigate('About a Location')}
         />
         <PlaceCard
           leftIcon={<LocationIcon />}
           rightIcon={<CollectedIcon />}
           title='Fruitvale'
           subtitle='234 Places'
+          onPress={() => navigation.navigate('About a Location')}
         />
         {/* create carousel to change pages */}
       </View>

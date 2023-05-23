@@ -21,7 +21,7 @@ export default function Home({navigation}: Props) {
     <SafeAreaView className='flex-1 relative bg-dark'>
 
       {/* Logo */}
-      <View className='px-6'>
+      <View className='px-6 pt-3'>
         <Image
           source={require('../../assets/logo.png')}
           style={{ width: 115, height: 115 }}

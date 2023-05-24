@@ -45,11 +45,22 @@ const AboutAMap = ({route, navigation}: Props) => {
       <View className='px-4 py-2 flex-col space-y-2'>
         { locationsInCA.map((location) => (
           <PlaceCard
+            key={ location.title }
             leftIcon={<LocationIcon />}
             rightIcon={ Status(location.status) }
             title={ location.title }
             subtitle={ location.city }
-            onPress={() => navigation.navigate('About a Location')}
+            onPress={() => navigation.navigate('About a Location', {
+              title: location.title,
+              status: location.status,
+              address: location.address,
+              city: location.city,
+              state: location.state,
+              zip: location.zip,
+              website: location.website,
+              designs: location.designs,
+              notes: location.notes
+            })}
           />
         ))}
         {/* create carousel to change pages */}

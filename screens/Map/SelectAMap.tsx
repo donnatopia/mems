@@ -40,6 +40,7 @@ const SelectAMap = ({ route, navigation }: Props) => {
       <View className='px-4 py-2 flex-col space-y-2'>
         { mapLocations.map((mapLocation) => (
           <PlaceCard
+            key={ mapLocation.title }
             leftIcon={<CompassIcon />}
             rightIcon={<ToBeSelectedIcon />}
             title={ mapLocation.title }

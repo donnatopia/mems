@@ -20,7 +20,22 @@ export type RootStackParamList = {
     title: string,
     places: number,
   };
-  'About a Location': undefined;
+  'About a Location': {
+    title: string,
+    status: number,
+    address: string,
+    city: string,
+    state: string,
+    zip: number,
+    website: string,
+    designs: string,
+    notes: Note[];
+  };
+}
+
+export type Note = {
+  date: string;
+  content: string;
 }
 
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();

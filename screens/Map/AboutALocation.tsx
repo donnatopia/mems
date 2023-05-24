@@ -3,19 +3,30 @@ import React, { useLayoutEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../App'
 import BackButton from '../../components/BackButton'
-import { CollectedIcon } from '../../components/Map/Legend'
+import { CollectedIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
 import { Icon } from '@rneui/themed'
-import { Link } from '@react-navigation/native'
 
-type Props = NativeStackScreenProps<RootStackParamList>
+type Props = NativeStackScreenProps<RootStackParamList, 'About a Location'>
 
-const AboutALocation = ({navigation}: Props) => {
+const AboutALocation = ({route, navigation}: Props) => {
+
+  const { title, status, address, city, state, zip, website, designs, notes } = route.params;
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     })
   }, [])
+
+  const StatusIcon = (status: number) => {
+    if (status === 0) {
+      return <NotCollectedIcon />
+    } else if (status === 1) {
+      return <CollectedIcon />
+    } else {
+      return <OutOfOrderIcon />
+    }
+  }
 
   return (
     <SafeAreaView className='flex-1 bg-dark'>
@@ -24,10 +35,10 @@ const AboutALocation = ({navigation}: Props) => {
       </View>
       <View className='pt-5 px-10 flex-row justify-between items-center'>
         <View>
-          <Text className='text-2xl text-legend-green font-bold'>Oakland Museum</Text>
-          <Text className='text-lg text-font-2'>Oakland, CA</Text>
+          <Text className={`text-2xl text-font-1 font-bold`}>{ title }</Text>
+          <Text className='text-lg text-font-2'>{ city }</Text>
         </View>
-        <CollectedIcon />
+        { StatusIcon(status) }
       </View>
 
       {/* About */}
@@ -35,19 +46,19 @@ const AboutALocation = ({navigation}: Props) => {
 
         {/* Title */}
         <View>
-          <Text className='text-xl text-font-2 font-bold'>About</Text>
+          <Text className='text-xl text-font-1 font-bold'>About</Text>
         </View>
 
         {/* Address */}
         <View className='pt-2 pl-4 flex-col space-y-2'>
           <View className='flex-row space-x-4 items-center'>
-            <CollectedIcon />
+            { StatusIcon(status) }
             <Text className='text-lg text-font-2 font-semibold'>Address</Text>
           </View>
           <View className='pl-2'>
-            <View className='border-legend-green border-l-2 pl-7 py-3'>
-              <Text className='text-font-2'>1000 Oak St.</Text>
-              <Text className='text-font-2'>Oakland, CA 94607</Text>
+            <View className={`border-font-2 border-l-2 pl-7 py-3`}>
+              <Text className='text-font-2'>{ address }</Text>
+              <Text className='text-font-2'>{ city }, { state } { zip }</Text>
             </View>
           </View>
         </View>
@@ -55,12 +66,12 @@ const AboutALocation = ({navigation}: Props) => {
         {/* Links */}
         <View className='pt-2 pl-4 flex-col space-y-2'>
           <View className='flex-row space-x-4 items-center'>
-            <CollectedIcon />
+            { StatusIcon(status) }
             <Text className='text-lg text-font-2 font-semibold'>Links</Text>
           </View>
           <View className='pl-2'>
-            <View className='border-legend-green border-l-2 pl-7 py-3'>
-              <Text className='text-font-2'>Penny Machine Website</Text>
+            <View className={`border-font-2 border-l-2 pl-7 py-3`}>
+              <Text className='text-font-2'>{ website }</Text>
             </View>
           </View>
         </View>
@@ -68,9 +79,9 @@ const AboutALocation = ({navigation}: Props) => {
         {/* Design */}
         <View className='pt-2 pl-4'>
           <View className='flex-row space-x-4 items-center'>
-            <CollectedIcon />
+            { StatusIcon(status) }
             <Text className='text-lg text-font-2 font-semibold'>Designs:</Text>
-            <Text className='text-lg text-font-2'>4P</Text>
+            <Text className='text-lg text-font-2'>{ designs }</Text>
           </View>
         </View>
 
@@ -81,34 +92,22 @@ const AboutALocation = ({navigation}: Props) => {
 
         {/* Title */}
         <View>
-          <Text className='text-xl text-font-2 font-bold'>Notes</Text>
+          <Text className='text-xl text-font-1 font-bold'>Notes</Text>
         </View>
 
-        {/* Note 1 */}
-        <View className='pt-2 pl-4 flex-col space-y-2'>
-          <View className='flex-row space-x-4 items-center'>
-            <CollectedIcon />
-            <Text className='text-lg text-font-2 font-semibold'>May 15, 2023</Text>
-          </View>
-          <View className='pl-2'>
-            <View className='border-legend-green border-l-2 pl-7 py-3'>
-              <Text className='text-font-2'>Free Admission on First Fridays</Text>
+        { notes.map((note) => (
+          <View className='pt-2 pl-4 flex-col space-y-2'>
+            <View className='flex-row space-x-4 items-center'>
+              { StatusIcon(status) }
+              <Text className='text-lg text-font-2 font-semibold'>{ note.date }</Text>
+            </View>
+            <View className='pl-2'>
+              <View className={`border-font-2 border-l-2 pl-7 py-3`}>
+                <Text className='text-font-2'>{ note.content }</Text>
+              </View>
             </View>
           </View>
-        </View>
-
-        {/* Note 2 */}
-        <View className='pt-2 pl-4 flex-col space-y-2'>
-          <View className='flex-row space-x-4 items-center'>
-            <CollectedIcon />
-            <Text className='text-lg text-font-2 font-semibold'>May 17, 2023</Text>
-          </View>
-          <View className='pl-2'>
-            <View className='border-legend-green border-l-2 pl-7 py-3'>
-              <Text className='text-font-2'>Collected</Text>
-            </View>
-          </View>
-        </View>
+        ))}
 
         {/* Add a Note */}
         <View className='pt-2 pl-4 flex-row space-x-4 items-center'>

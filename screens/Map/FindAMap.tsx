@@ -6,12 +6,12 @@ import GuideCard from '../../components/Map/GuideCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { guides } from '../../data'
+import FilterCollected from '../../components/Map/FilterCollected';
 
 type Props = NativeStackScreenProps<RootStackParamList>
 
 const FindAMap = ({navigation}: Props) => {
   const [input, setInput] = useState('');
-
 
   useLayoutEffect(() => {
     navigation.setOptions({

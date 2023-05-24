@@ -1,19 +1,19 @@
-import { View, Text } from 'react-native'
-import React, { useState } from 'react'
+import { View } from 'react-native'
+import React from 'react'
 import Button from './Button';
+import { useMapFilter } from '../../contexts/FilterCollected';
 
 const FilterCollected = () => {
-  const buttons = ['All', 'Collected', 'Not Collected'];
-  const [selected, setSelected] = useState(0);
+  const { selected, setSelected, filterOptions } = useMapFilter();
 
   return (
     <View className='flex-row justify-evenly'>
       {
-        buttons.map((button, index) => (
+        filterOptions.map((filter, index) => (
           <Button
             key={`button-${index}`}
             onPress={() => setSelected(index)}
-            text={button}
+            text={filter}
             variety={index === selected ? 'primary' : 'secondary'}
             size='sm'
           />

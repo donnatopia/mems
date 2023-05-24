@@ -287,7 +287,7 @@ export const locationsInWA = [
   // Location 2
   {
     title: 'Pike Place Market',
-    status: 0,
+    status: 1,
     address: '85 Pike St',
     city: 'Seattle',
     state: 'Washington',
@@ -301,57 +301,6 @@ export const locationsInWA = [
       }
     ]
   },
-  // Location 3
-  {
-    title: 'Olympic National Park',
-    status: 1,
-    address: 'Olympic National Park',
-    city: 'Port Angeles',
-    state: 'Washington',
-    zip: 98362,
-    website: 'https://www.nps.gov/olym/index.htm',
-    designs: '4L',
-    notes: [
-      {
-        date: 'June 22, 2023',
-        content: 'Diverse ecosystems and stunning landscapes'
-      }
-    ]
-  },
-  // Location 4
-  {
-    title: 'Mount Rainier National Park',
-    status: -1,
-    address: 'Mount Rainier National Park',
-    city: 'Ashford',
-    state: 'Washington',
-    zip: 98304,
-    website: 'https://www.nps.gov/mora/index.htm',
-    designs: '1M',
-    notes: [
-      {
-        date: 'June 25, 2023',
-        content: 'Majestic mountain with hiking trails'
-      }
-    ]
-  },
-  // Location 5
-  {
-    title: 'San Juan Islands',
-    status: 1,
-    address: 'San Juan Islands',
-    city: 'Friday Harbor',
-    state: 'Washington',
-    zip: 98250,
-    website: 'https://www.visitsanjuans.com/',
-    designs: '5N',
-    notes: [
-      {
-        date: 'June 28, 2023',
-        content: 'Beautiful islands for kayaking and wildlife viewing'
-      }
-    ]
-  }
 ];
 
 export const locationsInTX = [
@@ -530,7 +479,7 @@ export const locationsInFL = [
   },
   // Location 6
   {
-    title: 'Kennedy Space Center',
+    title: 'Washington Space Center',
     status: -1,
     address: 'Kennedy Space Center',
     city: 'Merritt Island',
@@ -547,7 +496,7 @@ export const locationsInFL = [
   },
   // Location 7
   {
-    title: 'Key West',
+    title: 'Key East',
     status: 1,
     address: 'Key West',
     city: 'Key West',

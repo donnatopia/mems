@@ -9,13 +9,18 @@ import { CollectedIcon, LocationIcon, NotCollectedIcon, OutOfOrderIcon } from '.
 import { locationsInCA, locationsInFL, locationsInOR, locationsInTX, locationsInWA } from '../../data'
 import { AboutALocationProps } from '../../App'
 import PageCarousel from '../../components/PageCarousel'
+import { useMapFilter } from '../../contexts/FilterCollected'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'About a Map'>
 
 const AboutAMap = ({route, navigation}: Props) => {
-
+  // props
   const { title, places } = route.params;
+  const { selected } = useMapFilter();
+
+  // states
   const [locations, setLocations] = useState<AboutALocationProps[]>([]);
+  const [filteredLocations, setFilteredLocations] = useState<AboutALocationProps[]>([]);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(5);
 
@@ -32,6 +37,24 @@ const AboutAMap = ({route, navigation}: Props) => {
       setLocations(locationsInWA);
     }
   }, [])
+
+  const restartPageIndex = () => {
+    setStartIndex(0);
+    setEndIndex(5);
+  }
+
+  useEffect(() => {
+    if (selected === 1) {
+      restartPageIndex();
+      setFilteredLocations(locations.filter((location) => location.status === 1));
+    } else if (selected === 2) {
+      restartPageIndex();
+      setFilteredLocations(locations.filter((location) => location.status < 1));
+    } else {
+      restartPageIndex();
+      setFilteredLocations(locations);
+    }
+  }, [locations, selected]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -61,35 +84,43 @@ const AboutAMap = ({route, navigation}: Props) => {
       <View className='py-3 w-4/5 mx-auto'>
         <FilterCollected />
       </View>
-      <View className='px-4 py-2 flex-col space-y-2 h-[56vh]'>
-        { locations.slice(startIndex, endIndex).map((location) => (
-          <PlaceCard
-            key={ location.title }
-            leftIcon={<LocationIcon />}
-            rightIcon={ Status(location.status) }
-            title={ location.title }
-            subtitle={ location.city }
-            onPress={() => navigation.navigate('About a Location', {
-              title: location.title,
-              status: location.status,
-              address: location.address,
-              city: location.city,
-              state: location.state,
-              zip: location.zip,
-              website: location.website,
-              designs: location.designs,
-              notes: location.notes
-            })}
+      { filteredLocations.length > 0 ?
+        (<View>
+          <View className='px-4 py-2 flex-col space-y-2 h-[56vh]'>
+            { filteredLocations.slice(startIndex, endIndex).map((location) => (
+              <PlaceCard
+                key={ location.title }
+                leftIcon={<LocationIcon />}
+                rightIcon={ Status(location.status) }
+                title={ location.title }
+                subtitle={ location.city }
+                onPress={() => navigation.navigate('About a Location', {
+                  title: location.title,
+                  status: location.status,
+                  address: location.address,
+                  city: location.city,
+                  state: location.state,
+                  zip: location.zip,
+                  website: location.website,
+                  designs: location.designs,
+                  notes: location.notes
+                })}
+              />
+            )) }
+          </View>
+          <PageCarousel
+            start={ startIndex }
+            end={ endIndex }
+            setStartIndex={setStartIndex}
+            setEndIndex={setEndIndex}
+            length={ filteredLocations.length }
           />
-        ))}
-      </View>
-      <PageCarousel
-        start={ startIndex }
-        end={ endIndex }
-        setStartIndex={setStartIndex}
-        setEndIndex={setEndIndex}
-        length={ locations.length }
-      />
+        </View>)
+      : (
+        <View>
+          <Text className='text-lg text-font-3 text-center py-5'>No results found</Text>
+        </View>
+      ) }
     </SafeAreaView>
   )
 }

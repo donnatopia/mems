@@ -6,6 +6,8 @@ import SelectAMap from './screens/Map/SelectAMap';
 import Map from './screens/Map/Map';
 import AboutAMap from './screens/Map/AboutAMap';
 import AboutALocation from './screens/Map/AboutALocation';
+import { useState } from 'react';
+import { MapFilterContext } from './contexts/FilterCollected';
 
 export type RootStackParamList = {
   'Map Home': undefined;
@@ -43,16 +45,28 @@ export type Note = {
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
+
+  // Map Filters
+  const filterOptions = [
+    'All', // status: -1, 0, 1
+    'Collected', // status 1
+    'Not Collected' // status -1, 0
+  ]
+  const [selected, setSelected] = useState(0);
+  const value = { selected, setSelected, filterOptions };
+
   return (
-    <NavigationContainer>
-      <Navigator initialRouteName='Map Home'>
-        <Screen name='Map Home' component={ MapHome } />
-        <Screen name='Map' component={ Map } />
-        <Screen name='Find a Map' component={ FindAMap } />
-        <Screen name='Select a Map' component={ SelectAMap } />
-        <Screen name='About a Map' component={ AboutAMap } />
-        <Screen name='About a Location' component={AboutALocation} />
-      </Navigator>
-    </NavigationContainer>
+    <MapFilterContext.Provider value={value}>
+      <NavigationContainer>
+        <Navigator initialRouteName='Map Home'>
+          <Screen name='Map Home' component={ MapHome } />
+          <Screen name='Map' component={ Map } />
+          <Screen name='Find a Map' component={ FindAMap } />
+          <Screen name='Select a Map' component={ SelectAMap } />
+          <Screen name='About a Map' component={ AboutAMap } />
+          <Screen name='About a Location' component={AboutALocation} />
+        </Navigator>
+      </NavigationContainer>
+    </MapFilterContext.Provider>
   );
 }

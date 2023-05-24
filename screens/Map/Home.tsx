@@ -11,6 +11,11 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Map Home'>;
 
 export default function Home({navigation}: Props) {
 
+  const selectedMap = {
+    title: 'California',
+    places: 5,
+  }
+
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
@@ -41,8 +46,12 @@ export default function Home({navigation}: Props) {
         <PlaceCard
           leftIcon={<CompassIcon />}
           rightIcon={<SelectedIcon />}
-          title='California'
-          subtitle='123 Places'
+          title={ selectedMap.title }
+          subtitle={`${selectedMap.places} places`}
+          onPress={() => navigation.navigate('About a Map', {
+            title: selectedMap.title,
+            places: selectedMap.places
+          })}
         />
       </View>
 

@@ -5,12 +5,12 @@ import FilterCollected from '../../components/Map/FilterCollected';
 import PlaceCard from '../../components/Map/PlaceCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
-import { CompassIcon, RightIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
+import { CompassIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
+import { mapLocations } from '../../data';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Select a Map'>
 
 const SelectAMap = ({ route, navigation }: Props) => {
-
   const { title, maps, places } = route.params;
 
   useLayoutEffect(() => {
@@ -38,41 +38,19 @@ const SelectAMap = ({ route, navigation }: Props) => {
         <FilterCollected />
       </View>
       <View className='px-4 py-2 flex-col space-y-2'>
-        <PlaceCard
-          leftIcon={<CompassIcon />}
-          rightIcon={<RightIcon />}
-          title='California'
-          subtitle='234 Places'
-          onPress={() => navigation.navigate('About a Map')}
-        />
-        <PlaceCard
-          leftIcon={<CompassIcon />}
-          rightIcon={<ToBeSelectedIcon />}
-          title='Oregon'
-          subtitle='234 Places'
-          onPress={() => navigation.navigate('Map Home')}
-        />
-        <PlaceCard
-          leftIcon={<CompassIcon />}
-          rightIcon={<ToBeSelectedIcon />}
-          title='Washington'
-          subtitle='234 Places'
-          onPress={() => navigation.navigate('Map Home')}
-        />
-        <PlaceCard
-          leftIcon={<CompassIcon />}
-          rightIcon={<ToBeSelectedIcon />}
-          title='Texas'
-          subtitle='234 Places'
-          onPress={() => navigation.navigate('Map Home')}
-        />
-        <PlaceCard
-          leftIcon={<CompassIcon />}
-          rightIcon={<ToBeSelectedIcon />}
-          title='Florida'
-          subtitle='234 Places'
-          onPress={() => navigation.navigate('Map Home')}
-        />
+        { mapLocations.map((mapLocation) => (
+          <PlaceCard
+            leftIcon={<CompassIcon />}
+            rightIcon={<ToBeSelectedIcon />}
+            title={ mapLocation.title }
+            subtitle={ `${mapLocation.places} places` }
+            onPress={() => navigation.navigate('About a Map', {
+              title: mapLocation.title,
+              places: mapLocation.places
+            })}
+            rightIconOnPress={() => navigation.navigate('Map Home')}
+          />
+        )) }
         {/* create carousel to change pages */}
       </View>
     </SafeAreaView>

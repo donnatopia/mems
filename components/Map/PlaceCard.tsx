@@ -1,5 +1,6 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React, { ReactElement } from 'react'
+import { RightIcon } from './Legend';
 
 interface CardProps {
   leftIcon: ReactElement;
@@ -7,9 +8,10 @@ interface CardProps {
   title: string;
   subtitle: string;
   onPress?: () => void;
+  rightIconOnPress?: () => void;
 }
 
-const Card: React.FC<CardProps> = ({ leftIcon, rightIcon, title, subtitle, onPress }) => {
+const Card: React.FC<CardProps> = ({ leftIcon, rightIcon, title, subtitle, onPress, rightIconOnPress }) => {
   return (
     <TouchableOpacity className='my-2 border-2 border-[#BAB1B1] p-3 rounded-2xl flex-row items-center justify-between' onPress={onPress}>
       <View className='flex-row items-center space-x-4'>
@@ -19,9 +21,7 @@ const Card: React.FC<CardProps> = ({ leftIcon, rightIcon, title, subtitle, onPre
           <Text className='text-font-2'>{ subtitle }</Text>
         </View>
       </View>
-      <View>
-        { rightIcon }
-      </View>
+      { rightIconOnPress ? <TouchableOpacity onPress={rightIconOnPress}>{rightIcon}</TouchableOpacity> : <View>{rightIcon}</View>}
     </TouchableOpacity>
   )
 }

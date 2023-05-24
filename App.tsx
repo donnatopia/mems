@@ -16,7 +16,10 @@ export type RootStackParamList = {
     maps: number,
     places: number
   };
-  'About a Map': undefined;
+  'About a Map': {
+    title: string,
+    places: number,
+  };
   'About a Location': undefined;
 }
 

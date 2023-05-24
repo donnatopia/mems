@@ -1,5 +1,5 @@
 import { View, Text, SafeAreaView } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import BackButton from '../../components/BackButton';
 import FilterCollected from '../../components/Map/FilterCollected';
 import PlaceCard from '../../components/Map/PlaceCard';
@@ -7,11 +7,14 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { CompassIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
 import { mapLocations } from '../../data';
+import PageCarousel from '../../components/PageCarousel';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Select a Map'>
 
 const SelectAMap = ({ route, navigation }: Props) => {
   const { title, maps, places } = route.params;
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(5);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -38,7 +41,7 @@ const SelectAMap = ({ route, navigation }: Props) => {
         <FilterCollected />
       </View>
       <View className='px-4 py-2 flex-col space-y-2'>
-        { mapLocations.map((mapLocation) => (
+        { mapLocations.slice(startIndex, endIndex).map((mapLocation) => (
           <PlaceCard
             key={ mapLocation.title }
             leftIcon={<CompassIcon />}
@@ -52,7 +55,13 @@ const SelectAMap = ({ route, navigation }: Props) => {
             rightIconOnPress={() => navigation.navigate('Map Home')}
           />
         )) }
-        {/* create carousel to change pages */}
+        <PageCarousel
+          start={ startIndex }
+          end={ endIndex }
+          setStartIndex={ setStartIndex }
+          setEndIndex={ setEndIndex }
+          length={ mapLocations.length }
+        />
       </View>
     </SafeAreaView>
   )

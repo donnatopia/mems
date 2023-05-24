@@ -1,49 +1,3 @@
-export const guides = [
-  {
-    title: 'All Maps',
-    maps: 10,
-    places: 50
-  },
-  {
-    title: 'Favorites',
-    maps: 1,
-    places: 5
-  },
-  {
-    title: 'United States',
-    maps: 5,
-    places: 25
-  },
-  {
-    title: 'International',
-    maps: 5,
-    places: 25
-  }
-];
-
-export const mapLocations = [
-  {
-    title: 'California',
-    places: 5
-  },
-  {
-    title: 'Oregon',
-    places: 5
-  },
-  {
-    title: 'Washington',
-    places: 5
-  },
-  {
-    title: 'Texas',
-    places: 5
-  },
-  {
-    title: 'Florida',
-    places: 5
-  },
-]
-
 export const locationsInCA = [
   {
     title: 'Oakland Museum',
@@ -132,8 +86,97 @@ export const locationsInCA = [
         content: 'Collected famous celebrity stars'
       }
     ]
-  }
-]
+  },
+  // Add the next 5 locations here
+  {
+    title: 'San Diego Zoo',
+    status: 0,
+    address: '2920 Zoo Dr',
+    city: 'San Diego',
+    state: 'California',
+    zip: 92101,
+    website: 'https://zoo.sandiegozoo.org/',
+    designs: '6E',
+    notes: [
+      {
+        date: 'May 28, 2023',
+        content: 'Lots of animal exhibits'
+      },
+      {
+        date: 'May 30, 2023',
+        content: 'Not collected yet'
+      }
+    ]
+  },
+  {
+    title: 'Alcatraz Island',
+    status: 1,
+    address: 'Alcatraz Island',
+    city: 'San Francisco',
+    state: 'California',
+    zip: 94133,
+    website: 'https://www.nps.gov/alca/index.htm',
+    designs: '7F',
+    notes: [
+      {
+        date: 'June 2, 2023',
+        content: 'Historical prison tour'
+      }
+    ]
+  },
+  {
+    title: 'Universal Studios Hollywood',
+    status: 1,
+    address: '100 Universal City Plaza',
+    city: 'Universal City',
+    state: 'California',
+    zip: 91608,
+    website: 'https://www.universalstudioshollywood.com/',
+    designs: '8G',
+    notes: [
+      {
+        date: 'June 5, 2023',
+        content: 'Enjoyed thrilling rides'
+      }
+    ]
+  },
+  {
+    title: 'Santa Monica Pier',
+    status: 0,
+    address: '200 Santa Monica Pier',
+    city: 'Santa Monica',
+    state: 'California',
+    zip: 90401,
+    website: 'https://santamonicapier.org/',
+    designs: '9H',
+    notes: [
+      {
+        date: 'June 8, 2023',
+        content: 'Beautiful beach views'
+      },
+      {
+        date: 'June 10, 2023',
+        content: 'Not collected yet'
+      }
+    ]
+  },
+  {
+    title: 'California Academy of Sciences',
+    status: 1,
+    address: '55 Music Concourse Dr',
+    city: 'San Francisco',
+    state: 'California',
+    zip: 94118,
+    website: 'https://www.calacademy.org/',
+    designs: '10I',
+    notes: [
+      {
+        date: 'June 12, 2023',
+        content: 'Explored the museum exhibits'
+      }
+    ]
+  },
+];
 
 export const locationsInOR = [
   // Location 1
@@ -484,5 +527,85 @@ export const locationsInFL = [
         content: 'Quaint island town with beautiful sunsets'
       }
     ]
+  },
+  // Location 6
+  {
+    title: 'Kennedy Space Center',
+    status: -1,
+    address: 'Kennedy Space Center',
+    city: 'Merritt Island',
+    state: 'Florida',
+    zip: 32899,
+    website: 'https://www.kennedyspacecenter.com/',
+    designs: '1W',
+    notes: [
+      {
+        date: 'July 28, 2023',
+        content: 'Explore space history and witness rocket launches'
+      }
+    ]
+  },
+  // Location 7
+  {
+    title: 'Key West',
+    status: 1,
+    address: 'Key West',
+    city: 'Key West',
+    state: 'Florida',
+    zip: 33040,
+    website: 'https://fla-keys.com/key-west/',
+    designs: '4X',
+    notes: [
+      {
+        date: 'August 1, 2023',
+        content: 'Quaint island town with beautiful sunsets'
+      }
+    ]
+  }
+];
+
+export const mapLocations = [
+  {
+    title: 'California',
+    places: locationsInCA.length
+  },
+  {
+    title: 'Oregon',
+    places: locationsInOR.length
+  },
+  {
+    title: 'Washington',
+    places: locationsInWA.length
+  },
+  {
+    title: 'Texas',
+    places: locationsInTX.length
+  },
+  {
+    title: 'Florida',
+    places: locationsInFL.length
+  },
+]
+
+export const guides = [
+  {
+    title: 'All Maps',
+    maps: 10,
+    places: 50
+  },
+  {
+    title: 'Favorites',
+    maps: 1,
+    places: 5
+  },
+  {
+    title: 'United States',
+    maps: mapLocations.length,
+    places: locationsInCA.length + locationsInFL.length + locationsInOR.length + locationsInTX.length + locationsInWA.length
+  },
+  {
+    title: 'International',
+    maps: 5,
+    places: 25
   }
 ];

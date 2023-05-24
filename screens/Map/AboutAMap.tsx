@@ -8,6 +8,7 @@ import PlaceCard from '../../components/Map/PlaceCard'
 import { CollectedIcon, LocationIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
 import { locationsInCA, locationsInFL, locationsInOR, locationsInTX, locationsInWA } from '../../data'
 import { AboutALocationProps } from '../../App'
+import PageCarousel from '../../components/PageCarousel'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'About a Map'>
 
@@ -15,6 +16,8 @@ const AboutAMap = ({route, navigation}: Props) => {
 
   const { title, places } = route.params;
   const [locations, setLocations] = useState<AboutALocationProps[]>([]);
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(5);
 
   useEffect(() => {
     if (title === 'California') {
@@ -58,8 +61,8 @@ const AboutAMap = ({route, navigation}: Props) => {
       <View className='py-3 w-4/5 mx-auto'>
         <FilterCollected />
       </View>
-      <View className='px-4 py-2 flex-col space-y-2'>
-        { locations.map((location) => (
+      <View className='px-4 py-2 flex-col space-y-2 h-[56vh]'>
+        { locations.slice(startIndex, endIndex).map((location) => (
           <PlaceCard
             key={ location.title }
             leftIcon={<LocationIcon />}
@@ -79,8 +82,14 @@ const AboutAMap = ({route, navigation}: Props) => {
             })}
           />
         ))}
-        {/* create carousel to change pages */}
       </View>
+      <PageCarousel
+        start={ startIndex }
+        end={ endIndex }
+        setStartIndex={setStartIndex}
+        setEndIndex={setEndIndex}
+        length={ locations.length }
+      />
     </SafeAreaView>
   )
 }

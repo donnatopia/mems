@@ -4,9 +4,8 @@ import BackButton from '../../components/BackButton';
 import Search from '../../components/Search';
 import GuideCard from '../../components/Map/GuideCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
-import { guides } from '../../data'
-import FilterCollected from '../../components/Map/FilterCollected';
+import { RootStackParamList } from '../../../App';
+import { guides } from '../../../data'
 
 type Props = NativeStackScreenProps<RootStackParamList>
 

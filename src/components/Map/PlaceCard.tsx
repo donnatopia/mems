@@ -1,6 +1,5 @@
 import { View, Text, TouchableOpacity } from 'react-native'
 import React, { ReactElement } from 'react'
-import { RightIcon } from './Legend';
 
 interface CardProps {
   leftIcon: ReactElement;

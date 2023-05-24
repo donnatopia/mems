@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { SearchBarIOS } from '@rneui/base/dist/SearchBar/SearchBar-ios'
 
 interface SearchProps {

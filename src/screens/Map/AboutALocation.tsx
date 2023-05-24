@@ -1,7 +1,7 @@
 import { View, Text, SafeAreaView } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../../App'
+import { RootStackParamList } from '../../../App'
 import BackButton from '../../components/BackButton'
 import { CollectedIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
 import { Icon } from '@rneui/themed'

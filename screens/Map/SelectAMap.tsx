@@ -4,9 +4,9 @@ import BackButton from '../../components/BackButton';
 import FilterCollected from '../../components/Map/FilterCollected';
 import PlaceCard from '../../components/Map/PlaceCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../../App';
+import { RootStackParamList } from '../../App';
 import { CompassIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
-import { mapLocations } from '../../../data';
+import { mapLocations } from '../../data';
 import PageCarousel from '../../components/PageCarousel';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Select a Map'>

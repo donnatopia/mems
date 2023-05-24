@@ -1,7 +1,7 @@
 import { SafeAreaView, Text, View } from 'react-native'
 import React, { useLayoutEffect } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
-import { RootStackParamList } from '../../../App'
+import { RootStackParamList } from '../../App'
 import BackButton from '../../components/BackButton'
 
 type Props = NativeStackScreenProps<RootStackParamList>

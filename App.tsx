@@ -1,13 +1,13 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MapHome from './src/screens/Map/Home';
-import FindAMap from './src/screens/Map/FindAMap';
-import SelectAMap from './src/screens/Map/SelectAMap';
-import Map from './src/screens/Map/Map';
-import AboutAMap from './src/screens/Map/AboutAMap';
-import AboutALocation from './src/screens/Map/AboutALocation';
+import MapHome from './screens/Map/Home';
+import FindAMap from './screens/Map/FindAMap';
+import SelectAMap from './screens/Map/SelectAMap';
+import Map from './screens/Map/Map';
+import AboutAMap from './screens/Map/AboutAMap';
+import AboutALocation from './screens/Map/AboutALocation';
 import { useState } from 'react';
-import { MapFilterContext } from './src/contexts/FilterCollected';
+import { MapFilterContext } from './contexts/FilterCollected';
 
 export type RootStackParamList = {
   'Map Home': undefined;

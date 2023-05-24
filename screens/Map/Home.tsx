@@ -4,7 +4,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import PlaceCard from '../../components/Map/PlaceCard';
 import Button from '../../components/Map/Button';
 import FilterCollected from '../../components/Map/FilterCollected';
-import { RootStackParamList } from '../../../App';
+import { RootStackParamList } from '../../App';
 import { CompassIcon, SelectedIcon } from '../../components/Map/Legend';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Map Home'>;

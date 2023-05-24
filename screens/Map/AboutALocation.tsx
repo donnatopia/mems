@@ -95,8 +95,11 @@ const AboutALocation = ({route, navigation}: Props) => {
           <Text className='text-xl text-font-1 font-bold'>Notes</Text>
         </View>
 
-        { notes.map((note) => (
-          <View className='pt-2 pl-4 flex-col space-y-2'>
+        { notes.map((note, index) => (
+          <View
+            key={`note-${index}`}
+            className='pt-2 pl-4 flex-col space-y-2'
+          >
             <View className='flex-row space-x-4 items-center'>
               { StatusIcon(status) }
               <Text className='text-lg text-font-2 font-semibold'>{ note.date }</Text>

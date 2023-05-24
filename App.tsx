@@ -20,18 +20,20 @@ export type RootStackParamList = {
     title: string,
     places: number,
   };
-  'About a Location': {
-    title: string,
-    status: number,
-    address: string,
-    city: string,
-    state: string,
-    zip: number,
-    website: string,
-    designs: string,
-    notes: Note[];
-  };
+  'About a Location': AboutALocationProps;
 }
+
+export type AboutALocationProps = {
+  title: string,
+  status: number,
+  address: string,
+  city: string,
+  state: string,
+  zip: number | null,
+  website: string,
+  designs: string,
+  notes: Note[];
+};
 
 export type Note = {
   date: string;

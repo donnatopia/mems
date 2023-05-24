@@ -1,18 +1,34 @@
 import { View, Text, SafeAreaView } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../App'
 import BackButton from '../../components/BackButton'
 import FilterCollected from '../../components/Map/FilterCollected'
 import PlaceCard from '../../components/Map/PlaceCard'
 import { CollectedIcon, LocationIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
-import { locationsInCA } from '../../data'
+import { locationsInCA, locationsInFL, locationsInOR, locationsInTX, locationsInWA } from '../../data'
+import { AboutALocationProps } from '../../App'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'About a Map'>
 
 const AboutAMap = ({route, navigation}: Props) => {
 
   const { title, places } = route.params;
+  const [locations, setLocations] = useState<AboutALocationProps[]>([]);
+
+  useEffect(() => {
+    if (title === 'California') {
+      setLocations(locationsInCA);
+    } else if (title === 'Florida') {
+      setLocations(locationsInFL);
+    } else if (title === 'Texas') {
+      setLocations(locationsInTX);
+    } else if (title === 'Oregon') {
+      setLocations(locationsInOR);
+    } else if (title === 'Washington') {
+      setLocations(locationsInWA);
+    }
+  }, [])
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -43,7 +59,7 @@ const AboutAMap = ({route, navigation}: Props) => {
         <FilterCollected />
       </View>
       <View className='px-4 py-2 flex-col space-y-2'>
-        { locationsInCA.map((location) => (
+        { locations.map((location) => (
           <PlaceCard
             key={ location.title }
             leftIcon={<LocationIcon />}

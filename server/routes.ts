@@ -1,5 +1,6 @@
 import express from 'express';
-import { requestAllGuide, requestCustomGuides, requestFavGuide } from './controllers/map/guides'
+import { requestAllGuide, requestCustomGuides, requestFavGuide } from './controllers/Map/guides'
+import { requestAllMaps, requestCustomMaps, requestFavMaps } from './controllers/Map/maps';
 
 const router = express.Router();
 
@@ -14,7 +15,6 @@ router.get('/guides/fav', requestFavGuide);
     guide_id: 1,
     title: "United States",
     maps: number,
-    places_all: number,
     places_collected: number,
     places_not_collected: number,
   }
@@ -23,18 +23,15 @@ router.get('/guides/fav', requestFavGuide);
 
 
 // Provides a list of maps for a given guide
-// router.get('/guides/custom/:guide_id/maps', requestAGuide);
-// router.get('/guides/all/maps', requestAllMaps);
-// router.get('/guides/fav/maps', requestFavMaps);
-
-
+router.get('/maps/all', requestAllMaps);
+router.get('/maps/fav', requestFavMaps);
+router.get('/maps/:guide_id', requestCustomMaps);
 /*
 [
   {
     map_id: 1,
     title: "California",
     favorite: boolean,
-    places_all: number,
     places_collected: number,
     places_not_collected: number
   }
@@ -48,7 +45,7 @@ router.get('/guides/fav', requestFavGuide);
 /*
 [
   {
-    location_id: 1,
+    place_id: 1,
     title: "Oakland Museum",
     status: 1,
     address: string,

@@ -6,27 +6,20 @@ export interface GuideProps {
   guide_id: number | null;
   title: string;
   maps: number;
-  places_all: number;
   places_collected: number;
   places_not_collected: number;
 }
 
 export async function getCustomGuides(): Promise<Array<GuideProps> | Error> {
-  const guides = {
-    name: 'get-guides',
+  const customGuides = {
+    name: 'get-custom-guides',
     text: `SELECT json_build_object(
-      'category', 'custom'
+      'category', 'custom',
       'guide_id', main.id,
       'title', main.title,
       'maps', (SELECT COUNT(*) FROM guides g
         JOIN guides_maps gm ON g.id = gm.guide_id
         JOIN maps m ON gm.map_id = m.id
-        WHERE g.id=main.id
-      ),
-      'places_all', (SELECT COUNT(*) FROM guides g
-        JOIN guides_maps gm ON g.id = gm.guide_id
-        JOIN maps m ON gm.map_id = m.id
-        JOIN places p ON m.id = p.map_id
         WHERE g.id=main.id
       ),
       'places_collected', (SELECT COUNT(*) FROM guides g
@@ -47,7 +40,7 @@ export async function getCustomGuides(): Promise<Array<GuideProps> | Error> {
   }
 
   return await client
-    .query(guides)
+    .query(customGuides)
     .then(({ rows }: QueryResult) => rows.map((row) => row.data) as Array<GuideProps>)
     .catch(err => err);
 }
@@ -62,11 +55,6 @@ export async function getAllGuide(): Promise<Array<GuideProps> | Error> {
       'maps', (SELECT COUNT(*) FROM guides g
         JOIN guides_maps gm ON g.id = gm.guide_id
         JOIN maps m ON gm.map_id = m.id
-      ),
-      'places_all', (SELECT COUNT(*) FROM guides g
-        JOIN guides_maps gm ON g.id = gm.guide_id
-        JOIN maps m ON gm.map_id = m.id
-        JOIN places p ON m.id = p.map_id
       ),
       'places_collected', (SELECT COUNT(*) FROM guides g
         JOIN guides_maps gm ON g.id = gm.guide_id
@@ -91,7 +79,7 @@ export async function getAllGuide(): Promise<Array<GuideProps> | Error> {
 }
 
 export async function getFavGuide(): Promise<Array<GuideProps> | Error> {
-  const allGuide = {
+  const favGuide = {
     name: 'get-fav-guides',
     text: `SELECT json_build_object(
       'category', 'fav',
@@ -100,12 +88,6 @@ export async function getFavGuide(): Promise<Array<GuideProps> | Error> {
       'maps', (SELECT COUNT(*) FROM guides g
         JOIN guides_maps gm ON g.id = gm.guide_id
         JOIN maps m ON gm.map_id = m.id
-        WHERE m.favorite = true
-      ),
-      'places_all', (SELECT COUNT(*) FROM guides g
-        JOIN guides_maps gm ON g.id = gm.guide_id
-        JOIN maps m ON gm.map_id = m.id
-        JOIN places p ON m.id = p.map_id
         WHERE m.favorite = true
       ),
       'places_collected', (SELECT COUNT(*) FROM guides g
@@ -125,7 +107,7 @@ export async function getFavGuide(): Promise<Array<GuideProps> | Error> {
   }
 
   return await client
-    .query(allGuide)
+    .query(favGuide)
     .then(({ rows }: QueryResult) => rows.map((row) => row.data) as Array<GuideProps>)
     .catch(err => err);
 }

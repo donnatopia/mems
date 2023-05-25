@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAllGuide, getFavGuide, getCustomGuides } from '../../models/map/guides';
+import { getAllGuide, getFavGuide, getCustomGuides } from '../../models/Map/guides';
 
 export function requestCustomGuides(req: Request, res: Response) {
   getCustomGuides()

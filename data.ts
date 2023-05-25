@@ -538,22 +538,22 @@ export const mapLocations = [
 
 export const guides = [
   {
-    title: 'All Maps',
+    title: 'Guide 1',
     maps: 10,
     places: 50
   },
   {
-    title: 'Favorites',
+    title: 'Guide 2',
     maps: 1,
     places: 5
   },
   {
-    title: 'United States',
+    title: 'Guide 3',
     maps: mapLocations.length,
     places: locationsInCA.length + locationsInFL.length + locationsInOR.length + locationsInTX.length + locationsInWA.length
   },
   {
-    title: 'International',
+    title: 'Guide 4',
     maps: 5,
     places: 25
   }

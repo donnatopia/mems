@@ -1,6 +1,8 @@
-const router = require('express').Router();
+import express from 'express';
+import { requestGuides } from './controllers/maps'
 
-router.get('/maps', (req, res) => {
-  res.status(200);
-  res.json('hello world');
-})
+const router = express.Router();
+
+router.get('/guides', requestGuides);
+
+export default router;

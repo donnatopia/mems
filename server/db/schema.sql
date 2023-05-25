@@ -1,3 +1,5 @@
+\c donnawong;
+
 DROP DATABASE IF EXISTS locations;
 CREATE DATABASE locations;
 
@@ -8,8 +10,15 @@ CREATE TABLE guides (
   title TEXT
 );
 
--- CREATE INDEX idx_guides ON guides(id);
-COPY guides (id, title) FROM '/Users/donnawong/mems/server/db/guides.csv' DELIMITER ',' CSV HEADER;
+COPY guides (id, title) FROM '/Users/donnawong/mems/server/data/guides.csv' DELIMITER ',' CSV HEADER;
+
+CREATE TABLE maps (
+  id INTEGER PRIMARY KEY,
+  title TEXT,
+  favorite BOOLEAN
+);
+
+COPY maps (id, title, favorite) FROM '/Users/donnawong/mems/server/data/maps.csv' DELIMITER ',' CSV HEADER;
 
 CREATE TABLE guides_maps (
   id INTEGER PRIMARY KEY,
@@ -17,36 +26,26 @@ CREATE TABLE guides_maps (
   map_id INTEGER REFERENCES maps(id)
 );
 
--- CREATE INDEX idx_guide_id ON guides_maps(guide_id);
--- CREATE INDEX idx_map_id ON guides_maps(map_id);
-
-CREATE TABLE maps (
-  id INTEGER PRIMARY KEY,
-  title TEXT,
-  selected BOOLEAN,
-  favorite BOOLEAN,
-  places INTEGER[]
-);
-
--- CREATE INDEX idx_selected ON maps(selected);
--- CREATE INDEX idx_favorite ON maps(favorite);
+COPY guides_maps (id, guide_id, map_id) FROM '/Users/donnawong/mems/server/data/guides_maps.csv' DELIMITER ',' CSV HEADER;
 
 CREATE TABLE places (
   id INTEGER PRIMARY KEY,
+  map_id INTEGER REFERENCES maps(id),
   title TEXT,
   status INTEGER,
   address TEXT,
   city TEXT,
   state TEXT,
-  zip INTEGER,
+  zip VARCHAR,
   website TEXT,
   designs TEXT
 );
 
+COPY places (id, map_id, title, status, address, city, state, zip, website, designs) FROM '/Users/donnawong/mems/server/data/places.csv' DELIMITER ',' CSV HEADER;
+
 CREATE TABLE notes (
   id INTEGER PRIMARY KEY,
+  places_id INTEGER,
   date TEXT,
   content TEXT
 );
-
--- CREATE INDEX idx_notes ON notes(id);

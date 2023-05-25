@@ -1,0 +1,11 @@
+id, title, favorite
+1, "California", true
+2, "Oregon", false
+3, "Washington", false
+4, "Texas", false
+5, "Florida", false
+6, "Australia", true
+7, "New Zealand", true
+8, "United Kingdom", false
+9, "Canada", false
+10, "Mexico", false

@@ -1,13 +1,16 @@
 import express from 'express';
-import { requestGuides } from './controllers/maps'
+import { requestAllGuide, requestCustomGuides, requestFavGuide } from './controllers/map/guides'
 
 const router = express.Router();
 
-// Provides a list of all the guides
-router.get('/guides', requestGuides);
+// Provides a list of guides info
+router.get('/guides/custom', requestCustomGuides);
+router.get('/guides/all', requestAllGuide);
+router.get('/guides/fav', requestFavGuide);
 /*
 [
   {
+    category: 'custom'
     guide_id: 1,
     title: "United States",
     maps: number,
@@ -20,9 +23,9 @@ router.get('/guides', requestGuides);
 
 
 // Provides a list of maps for a given guide
-// router.get('/guides/:guide_id', requestAGuide);
-// router.get('/guides/all', requestAllMaps);
-// router.get('/guides/fav', requestFavMaps);
+// router.get('/guides/custom/:guide_id/maps', requestAGuide);
+// router.get('/guides/all/maps', requestAllMaps);
+// router.get('/guides/fav/maps', requestFavMaps);
 
 
 /*

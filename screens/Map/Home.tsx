@@ -6,15 +6,14 @@ import Button from '../../components/Map/Button';
 import FilterCollected from '../../components/Map/FilterCollected';
 import { RootStackParamList } from '../../App';
 import { CompassIcon, SelectedIcon } from '../../components/Map/Legend';
+import { useLocations } from '../../contexts/Locations';
+import { useMapFilter } from '../../contexts/FilterCollected';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Map Home'>;
 
 export default function Home({navigation}: Props) {
-
-  const selectedMap = {
-    title: 'California',
-    places: 5,
-  }
+  const { selectedMap } = useLocations();
+  const { getNumOfSelectedPlaces } = useMapFilter();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -47,10 +46,12 @@ export default function Home({navigation}: Props) {
           leftIcon={<CompassIcon />}
           rightIcon={<SelectedIcon />}
           title={ selectedMap.title }
-          subtitle={`${selectedMap.places} places`}
+          subtitle={`${getNumOfSelectedPlaces(selectedMap.places_collected, selectedMap.places_not_collected)} places`}
           onPress={() => navigation.navigate('About a Map', {
+            map_id: selectedMap.map_id,
             title: selectedMap.title,
-            places: selectedMap.places
+            places_collected: selectedMap.places_collected,
+            places_not_collected: selectedMap.places_not_collected
           })}
         />
       </View>

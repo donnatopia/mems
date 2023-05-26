@@ -15,8 +15,8 @@ type Props = NativeStackScreenProps<RootStackParamList, 'About a Map'>
 
 const AboutAMap = ({route, navigation}: Props) => {
   // props
-  const { title, places, map_id } = route.params;
-  const { selected } = useMapFilter();
+  const { title, places_collected, places_not_collected, map_id } = route.params;
+  const { selected, getNumOfSelectedPlaces } = useMapFilter();
 
   // states
   const [locations, setLocations] = useState<DetailsProps[]>([]);
@@ -71,7 +71,7 @@ const AboutAMap = ({route, navigation}: Props) => {
       </View>
       <View className='pt-3'>
         <Text className='text-3xl text-theme-2 font-extrabold text-center'>{ title }</Text>
-        <Text className='text-lg text-font-3 text-center'>{ places } Places</Text>
+        <Text className='text-lg text-font-3 text-center'>{ getNumOfSelectedPlaces(places_collected, places_not_collected) } Places</Text>
       </View>
       <View className='py-3 w-4/5 mx-auto'>
         <FilterCollected />

@@ -1,7 +1,6 @@
 import React from 'react'
 import { Text, TouchableOpacity, View } from 'react-native'
 import { Icon } from '@rneui/base'
-import { useNavigation } from '@react-navigation/native';
 
 interface GuideCardProps {
   title: string;
@@ -11,8 +10,6 @@ interface GuideCardProps {
 }
 
 const GuideCard: React.FC<GuideCardProps> = ({ title, maps, places, onPress }) => {
-  const navigation = useNavigation();
-
   return (
     <View className='mb-4 w-[44vw]'>
       <TouchableOpacity

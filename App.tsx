@@ -17,12 +17,14 @@ export type RootStackParamList = {
     guide_id: number,
     title: string,
     maps: number,
-    places: number
+    places_collected: number,
+    places_not_collected: number
   };
   'About a Map': {
     map_id: number,
     title: string,
-    places: number,
+    places_collected: number,
+    places_not_collected: number
   };
   'About a Location': {
     place_id: number,

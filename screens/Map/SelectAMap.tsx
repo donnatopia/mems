@@ -9,14 +9,17 @@ import { CompassIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
 import PageCarousel from '../../components/PageCarousel';
 import { get } from '../../utilities/axios';
 import { MapProps } from '../../types';
+import { useMapFilter } from '../../contexts/FilterCollected';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Select a Map'>
 
 const SelectAMap = ({ route, navigation }: Props) => {
-  const { title, maps, places, guide_id } = route.params;
+  const { getNumOfSelectedPlaces } = useMapFilter();
+
+  const { title, maps, places_collected, places_not_collected, guide_id } = route.params;
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(5);
-  const [mapLocations, setMapLocations] = useState([] as MapProps[])
+  const [mapLocations, setMapLocations] = useState([] as MapProps[]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -28,7 +31,7 @@ const SelectAMap = ({ route, navigation }: Props) => {
     get(`/api/guides/${guide_id}`)
       .then(({ data }) => setMapLocations(data))
       .catch(err => console.log('error loading maps', err));
-  }, [])
+  }, []);
 
   return (
     <SafeAreaView className='flex-1 bg-dark'>
@@ -42,7 +45,7 @@ const SelectAMap = ({ route, navigation }: Props) => {
             { maps } Map{ maps !== 1 ? 's' : null }
           </Text>
           <Text className='text-lg text-font-3 text-center font-bold'>|</Text>
-          <Text className='text-lg text-font-3 text-center'>{ places } Places</Text>
+          <Text className='text-lg text-font-3 text-center'>{ getNumOfSelectedPlaces(places_collected, places_not_collected) } Places</Text>
         </View>
       </View>
       <View className='py-3 w-4/5 mx-auto'>
@@ -55,11 +58,12 @@ const SelectAMap = ({ route, navigation }: Props) => {
             leftIcon={<CompassIcon />}
             rightIcon={<ToBeSelectedIcon />}
             title={ mapLocation.title }
-            subtitle={ `${mapLocation.places_collected + mapLocation.places_not_collected} places` }
+            subtitle={ `${getNumOfSelectedPlaces(mapLocation.places_collected, mapLocation.places_not_collected)} places` }
             onPress={() => navigation.navigate('About a Map', {
               map_id: mapLocation.map_id,
               title: mapLocation.title,
-              places: mapLocation.places_collected + mapLocation.places_not_collected
+              places_collected: mapLocation.places_collected,
+              places_not_collected: mapLocation.places_not_collected
             })}
             rightIconOnPress={() => navigation.navigate('Map Home')}
           />

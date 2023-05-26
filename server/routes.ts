@@ -1,6 +1,7 @@
 import express from 'express';
 import { requestAllGuide, requestCustomGuides, requestFavGuide } from './controllers/Map/guides'
 import { requestAllMaps, requestCustomMaps, requestFavMaps } from './controllers/Map/maps';
+import { requestAMap } from './controllers/Map/places';
 
 const router = express.Router();
 
@@ -40,29 +41,40 @@ router.get('/maps/:guide_id', requestCustomMaps);
 
 
 // Provides a list of locations for a given map
-// router.get('/maps/:map_id', requestAMap);
-
+router.get('/places/:map_id', requestAMap);
 /*
 [
   {
     place_id: 1,
     title: "Oakland Museum",
     status: 1,
-    address: string,
-    city: string,
-    state: string,
-    zip: integer,
-    website: string,
-    design: string,
-    notes: [
-      {
-        id: number
-        date: string,
-        content: string
-      }
-    ]
+    city: string
   }
 ]
+*/
+
+
+// Provides an object of place details
+// router.get('/details/:place_id', requestAPlace);
+/*
+{
+  place_id: 1,
+  title: "Oakland Museum",
+  status: 1,
+  address: string,
+  city: string,
+  state: string,
+  zip: integer,
+  website: string,
+  design: string,
+  notes: [
+    {
+      note_id: number
+      date: string,
+      content: string
+    }
+  ]
+}
 */
 
 

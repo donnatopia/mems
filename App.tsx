@@ -6,8 +6,7 @@ import SelectAMap from './screens/Map/SelectAMap';
 import Map from './screens/Map/Map';
 import AboutAMap from './screens/Map/AboutAMap';
 import AboutALocation from './screens/Map/AboutALocation';
-import { useState } from 'react';
-import { MapFilterContext } from './contexts/FilterCollected';
+import { MapFilterProvider } from './contexts/FilterCollected';
 import { LocationsProvider } from './contexts/Locations';
 
 export type RootStackParamList = {
@@ -33,19 +32,9 @@ export type RootStackParamList = {
 const { Navigator, Screen } = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
-
-  // Map Filters
-  const filterOptions = [
-    'All', // status: -1, 0, 1
-    'Collected', // status 1
-    'Not Collected' // status -1, 0
-  ]
-  const [selected, setSelected] = useState(0);
-  const value = { selected, setSelected, filterOptions };
-
   return (
     <LocationsProvider>
-      <MapFilterContext.Provider value={value}>
+      <MapFilterProvider>
         <NavigationContainer>
           <Navigator initialRouteName='Map Home'>
             <Screen name='Map Home' component={ MapHome } />
@@ -56,7 +45,7 @@ export default function App() {
             <Screen name='About a Location' component={AboutALocation} />
           </Navigator>
         </NavigationContainer>
-      </MapFilterContext.Provider>
+      </MapFilterProvider>
     </LocationsProvider>
   );
 }

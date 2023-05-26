@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { createContext, useContext } from "react";
 
 interface ContextProps {}
@@ -14,7 +13,6 @@ interface ChildrenProps {
 }
 
 export function LocationsProvider({ children }: ChildrenProps){
-
   const value = {}
 
   return (

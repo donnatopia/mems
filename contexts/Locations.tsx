@@ -5,6 +5,7 @@ import { get } from "../utilities/axios";
 interface ContextProps {
   selectedMap: MapProps;
   setSelectedMapID: React.Dispatch<React.SetStateAction<number>>;
+  selectedMapID: number;
 }
 
 interface ChildrenProps {
@@ -39,6 +40,7 @@ export function LocationsProvider({ children }: ChildrenProps){
   const value = {
     selectedMap,
     setSelectedMapID,
+    selectedMapID,
   }
 
   return (

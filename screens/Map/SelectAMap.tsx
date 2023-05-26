@@ -5,16 +5,18 @@ import FilterCollected from '../../components/Map/FilterCollected';
 import PlaceCard from '../../components/Map/PlaceCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
-import { CompassIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
+import { CompassIcon, SelectedIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
 import PageCarousel from '../../components/PageCarousel';
 import { get } from '../../utilities/axios';
 import { MapProps } from '../../types';
 import { useMapFilter } from '../../contexts/FilterCollected';
+import { useLocations } from '../../contexts/Locations';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Select a Map'>
 
 const SelectAMap = ({ route, navigation }: Props) => {
   const { getNumOfSelectedPlaces } = useMapFilter();
+  const { setSelectedMapID, selectedMapID } = useLocations();
 
   const { title, maps, places_collected, places_not_collected, guide_id } = route.params;
   const [startIndex, setStartIndex] = useState(0);
@@ -56,7 +58,7 @@ const SelectAMap = ({ route, navigation }: Props) => {
           <PlaceCard
             key={ mapLocation.title }
             leftIcon={<CompassIcon />}
-            rightIcon={<ToBeSelectedIcon />}
+            rightIcon={mapLocation.map_id === selectedMapID ? <SelectedIcon /> : <ToBeSelectedIcon />}
             title={ mapLocation.title }
             subtitle={ `${getNumOfSelectedPlaces(mapLocation.places_collected, mapLocation.places_not_collected)} places` }
             onPress={() => navigation.navigate('About a Map', {
@@ -65,7 +67,10 @@ const SelectAMap = ({ route, navigation }: Props) => {
               places_collected: mapLocation.places_collected,
               places_not_collected: mapLocation.places_not_collected
             })}
-            rightIconOnPress={() => navigation.navigate('Map Home')}
+            rightIconOnPress={() => {
+              setSelectedMapID(mapLocation.map_id);
+              navigation.navigate('Map Home');
+            }}
           />
         )) }
         <PageCarousel

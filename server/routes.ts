@@ -2,6 +2,7 @@ import express from 'express';
 import { requestAllGuide, requestCustomGuides, requestFavGuide } from './controllers/Map/guides'
 import { requestAllMaps, requestCustomMaps, requestFavMaps } from './controllers/Map/maps';
 import { requestAMap } from './controllers/Map/places';
+import { requestDetails } from './controllers/Map/details';
 
 const router = express.Router();
 
@@ -55,7 +56,7 @@ router.get('/places/:map_id', requestAMap);
 
 
 // Provides an object of place details
-// router.get('/details/:place_id', requestAPlace);
+router.get('/details/:place_id', requestDetails);
 /*
 {
   place_id: 1,

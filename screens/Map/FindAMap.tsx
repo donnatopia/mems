@@ -1,22 +1,26 @@
 import { View, Text, SafeAreaView } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import BackButton from '../../components/BackButton';
 import Search from '../../components/Search';
 import GuideCard from '../../components/Map/GuideCard';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../App';
-import { guides } from '../../data'
+import { get } from '../../utilities/axios';
+import { GuideProps, NavigationProps } from '../../types';
 
-type Props = NativeStackScreenProps<RootStackParamList>
-
-const FindAMap = ({navigation}: Props) => {
+const FindAMap = ({navigation}: NavigationProps) => {
   const [input, setInput] = useState('');
+  const [guides, setGuides] = useState([] as GuideProps[]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     })
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    get('/api/guides')
+      .then(({ data }) => setGuides(data))
+      .catch(err => console.log('error loading guides', err));
+  }, []);
 
   return (
     <SafeAreaView className='flex-1 bg-dark'>
@@ -39,11 +43,11 @@ const FindAMap = ({navigation}: Props) => {
               key={`guide-${index}`}
               title={ guide.title }
               maps={ guide.maps }
-              places={ guide.places }
+              places={ guide.places_collected + guide.places_not_collected }
               onPress={() => navigation.navigate('Select a Map', {
                 title: guide.title,
                 maps: guide.maps,
-                places: guide.places
+                places: guide.places_collected + guide.places_not_collected
               })}
             />
           ))

@@ -1,5 +1,5 @@
 import express from 'express';
-import { requestAllGuide, requestCustomGuides, requestFavGuide } from './controllers/Map/guides'
+import { requestGuides } from './controllers/Map/guides'
 import { requestAllMaps, requestCustomMaps, requestFavMaps } from './controllers/Map/maps';
 import { requestAMap } from './controllers/Map/places';
 import { requestDetails } from './controllers/Map/details';
@@ -7,9 +7,7 @@ import { requestDetails } from './controllers/Map/details';
 const router = express.Router();
 
 // Provides a list of guides info
-router.get('/guides/custom', requestCustomGuides);
-router.get('/guides/all', requestAllGuide);
-router.get('/guides/fav', requestFavGuide);
+router.get('/guides/', requestGuides)
 /*
 [
   {

@@ -1,14 +1,6 @@
+import { GuideProps } from '../../../types';
 import client from '../../db/connection';
 import { QueryResult } from 'pg';
-
-export interface GuideProps {
-  category: string;
-  guide_id: number | null;
-  title: string;
-  maps: number;
-  places_collected: number;
-  places_not_collected: number;
-}
 
 export async function getCustomGuides(): Promise<Array<GuideProps> | Error> {
   const customGuides = {
@@ -110,4 +102,18 @@ export async function getFavGuide(): Promise<Array<GuideProps> | Error> {
     .query(favGuide)
     .then(({ rows }: QueryResult) => rows.map((row) => row.data) as Array<GuideProps>)
     .catch(err => err);
+}
+
+export async function getGuides(): Promise<Array<GuideProps> | Error> {
+  const [customGuides, allGuide, favGuide] = await Promise.all([
+    getCustomGuides(),
+    getAllGuide(),
+    getFavGuide()
+  ]);
+
+  if (customGuides instanceof Error) return customGuides;
+  if (allGuide instanceof Error) return allGuide;
+  if (favGuide instanceof Error) return favGuide;
+
+  return [...allGuide, ...favGuide, ...customGuides];
 }

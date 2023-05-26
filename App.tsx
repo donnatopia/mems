@@ -8,6 +8,7 @@ import AboutAMap from './screens/Map/AboutAMap';
 import AboutALocation from './screens/Map/AboutALocation';
 import { useState } from 'react';
 import { MapFilterContext } from './contexts/FilterCollected';
+import { LocationsProvider } from './contexts/Locations';
 
 export type RootStackParamList = {
   'Map Home': undefined;
@@ -56,17 +57,19 @@ export default function App() {
   const value = { selected, setSelected, filterOptions };
 
   return (
-    <MapFilterContext.Provider value={value}>
-      <NavigationContainer>
-        <Navigator initialRouteName='Map Home'>
-          <Screen name='Map Home' component={ MapHome } />
-          <Screen name='Map' component={ Map } />
-          <Screen name='Find a Map' component={ FindAMap } />
-          <Screen name='Select a Map' component={ SelectAMap } />
-          <Screen name='About a Map' component={ AboutAMap } />
-          <Screen name='About a Location' component={AboutALocation} />
-        </Navigator>
-      </NavigationContainer>
-    </MapFilterContext.Provider>
+    <LocationsProvider>
+      <MapFilterContext.Provider value={value}>
+        <NavigationContainer>
+          <Navigator initialRouteName='Map Home'>
+            <Screen name='Map Home' component={ MapHome } />
+            <Screen name='Map' component={ Map } />
+            <Screen name='Find a Map' component={ FindAMap } />
+            <Screen name='Select a Map' component={ SelectAMap } />
+            <Screen name='About a Map' component={ AboutAMap } />
+            <Screen name='About a Location' component={AboutALocation} />
+          </Navigator>
+        </NavigationContainer>
+      </MapFilterContext.Provider>
+    </LocationsProvider>
   );
 }

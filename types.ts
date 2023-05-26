@@ -37,3 +37,26 @@ export interface PlaceProps {
   status: number;
   city: string;
 }
+
+/* ===================
+  Places
+====================== */
+
+export interface DetailsProps {
+  place_id: number;
+  title: string;
+  status: number;
+  address: string;
+  city: string;
+  state: string;
+  zip: string | number;
+  website: string;
+  designs: string;
+  notes: NoteProps[] | null;
+}
+
+export interface NoteProps {
+  note_id: number;
+  date: string;
+  content: string;
+}

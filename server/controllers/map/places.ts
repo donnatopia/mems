@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { getDetails } from "../../models/Map/details";
+import { getDetails } from "../../models/Map/places";
 
 export function requestDetails(req: Request, res: Response) {
   const { place_id } = req.params;

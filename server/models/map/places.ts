@@ -1,24 +1,6 @@
+import { DetailsProps } from "../../../types";
 import client from "../../db/connection";
 import { QueryResult } from "pg";
-
-export interface DetailsProps {
-  place_id: number;
-  title: string;
-  status: number;
-  address: string;
-  city: string;
-  state: string;
-  zip: string | number;
-  website: string;
-  design: string;
-  notes: NoteProps[];
-}
-
-export interface NoteProps {
-  note_id: number;
-  date: string;
-  content: string;
-}
 
 export async function getDetails(place_id: number): Promise<DetailsProps | Error> {
   const details = {

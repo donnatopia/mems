@@ -6,10 +6,10 @@ import BackButton from '../../components/BackButton'
 import FilterCollected from '../../components/Map/FilterCollected'
 import PlaceCard from '../../components/Map/PlaceCard'
 import { CollectedIcon, LocationIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
-import { AboutALocationProps } from '../../App'
 import PageCarousel from '../../components/PageCarousel'
 import { useMapFilter } from '../../contexts/FilterCollected'
 import { get } from '../../utilities/axios'
+import { DetailsProps } from '../../types'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'About a Map'>
 
@@ -19,8 +19,8 @@ const AboutAMap = ({route, navigation}: Props) => {
   const { selected } = useMapFilter();
 
   // states
-  const [locations, setLocations] = useState<AboutALocationProps[]>([]);
-  const [filteredLocations, setFilteredLocations] = useState<AboutALocationProps[]>([]);
+  const [locations, setLocations] = useState<DetailsProps[]>([]);
+  const [filteredLocations, setFilteredLocations] = useState<DetailsProps[]>([]);
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(5);
 
@@ -87,15 +87,7 @@ const AboutAMap = ({route, navigation}: Props) => {
                 title={ location.title }
                 subtitle={ location.city }
                 onPress={() => navigation.navigate('About a Location', {
-                  title: location.title,
-                  status: location.status,
-                  address: location.address,
-                  city: location.city,
-                  state: location.state,
-                  zip: location.zip,
-                  website: location.website,
-                  designs: location.designs,
-                  notes: location.notes
+                  place_id: location.place_id
                 })}
               />
             )) }

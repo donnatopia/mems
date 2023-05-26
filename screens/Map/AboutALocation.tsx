@@ -1,21 +1,29 @@
 import { View, Text, SafeAreaView } from 'react-native'
-import React, { useLayoutEffect } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { RootStackParamList } from '../../App'
 import BackButton from '../../components/BackButton'
 import { CollectedIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
 import { Icon } from '@rneui/themed'
+import { get } from '../../utilities/axios'
+import { DetailsProps } from '../../types'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'About a Location'>
 
 const AboutALocation = ({route, navigation}: Props) => {
-
-  const { title, status, address, city, state, zip, website, designs, notes } = route.params;
+  const { place_id } = route.params;
+  const [place, setPlace] = useState({} as DetailsProps);
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false,
     })
+  }, [])
+
+  useEffect(() => {
+    get(`/api/places/${place_id}`)
+      .then(({ data }) => setPlace(data))
+      .catch((err) => console.log('error loading place information', err));
   }, [])
 
   const StatusIcon = (status: number) => {
@@ -35,10 +43,10 @@ const AboutALocation = ({route, navigation}: Props) => {
       </View>
       <View className='pt-5 px-10 flex-row justify-between items-center'>
         <View>
-          <Text className={`text-2xl text-font-1 font-bold`}>{ title }</Text>
-          <Text className='text-lg text-font-2'>{ city }</Text>
+          <Text className={`text-2xl text-font-1 font-bold`}>{ place.title }</Text>
+          <Text className='text-lg text-font-2'>{ place.city }</Text>
         </View>
-        { StatusIcon(status) }
+        { StatusIcon(place.status) }
       </View>
 
       {/* About */}
@@ -52,13 +60,13 @@ const AboutALocation = ({route, navigation}: Props) => {
         {/* Address */}
         <View className='pt-2 pl-4 flex-col space-y-2'>
           <View className='flex-row space-x-4 items-center'>
-            { StatusIcon(status) }
+            { StatusIcon(place.status) }
             <Text className='text-lg text-font-2 font-semibold'>Address</Text>
           </View>
           <View className='pl-2'>
             <View className={`border-font-2 border-l-2 pl-7 py-3`}>
-              <Text className='text-font-2'>{ address }</Text>
-              <Text className='text-font-2'>{ city }, { state } { zip }</Text>
+              <Text className='text-font-2'>{ place.address }</Text>
+              <Text className='text-font-2'>{ place.city }, { place.state } { place.zip }</Text>
             </View>
           </View>
         </View>
@@ -66,12 +74,12 @@ const AboutALocation = ({route, navigation}: Props) => {
         {/* Links */}
         <View className='pt-2 pl-4 flex-col space-y-2'>
           <View className='flex-row space-x-4 items-center'>
-            { StatusIcon(status) }
+            { StatusIcon(place.status) }
             <Text className='text-lg text-font-2 font-semibold'>Links</Text>
           </View>
           <View className='pl-2'>
             <View className={`border-font-2 border-l-2 pl-7 py-3`}>
-              <Text className='text-font-2'>{ website }</Text>
+              <Text className='text-font-2'>{ place.website }</Text>
             </View>
           </View>
         </View>
@@ -79,9 +87,9 @@ const AboutALocation = ({route, navigation}: Props) => {
         {/* Design */}
         <View className='pt-2 pl-4'>
           <View className='flex-row space-x-4 items-center'>
-            { StatusIcon(status) }
+            { StatusIcon(place.status) }
             <Text className='text-lg text-font-2 font-semibold'>Designs:</Text>
-            <Text className='text-lg text-font-2'>{ designs }</Text>
+            <Text className='text-lg text-font-2'>{ place.designs }</Text>
           </View>
         </View>
 
@@ -95,13 +103,13 @@ const AboutALocation = ({route, navigation}: Props) => {
           <Text className='text-xl text-font-1 font-bold'>Notes</Text>
         </View>
 
-        { notes ? notes.map((note, index) => (
+        { place.notes ? place.notes.map((note, index) => (
           <View
             key={`note-${index}`}
             className='pt-2 pl-4 flex-col space-y-2'
           >
             <View className='flex-row space-x-4 items-center'>
-              { StatusIcon(status) }
+              { StatusIcon(place.status) }
               <Text className='text-lg text-font-2 font-semibold'>{ note.date }</Text>
             </View>
             <View className='pl-2'>

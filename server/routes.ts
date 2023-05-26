@@ -1,7 +1,7 @@
 import express from 'express';
 import { requestGuides, requestMaps } from './controllers/Map/guides'
 import { requestAMap } from './controllers/Map/maps';
-import { requestDetails } from './controllers/Map/details';
+import { requestDetails } from './controllers/Map/places';
 
 const router = express.Router();
 
@@ -51,7 +51,7 @@ router.get('/maps/:map_id', requestAMap);
 
 
 // Provides an object of place details
-router.get('/details/:place_id', requestDetails);
+router.get('/places/:place_id', requestDetails);
 /*
 {
   place_id: 1,

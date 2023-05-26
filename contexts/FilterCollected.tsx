@@ -26,7 +26,6 @@ export function MapFilterProvider({ children }: ChildrenProps){
   const [selected, setSelected] = useState(0);
 
   const getNumOfSelectedPlaces = (collected: number, not_collected: number): number => {
-    console.log('called this function');
     if (selected === 0) {
       return collected + not_collected;
     } else if (selected === 1) {

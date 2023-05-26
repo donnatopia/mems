@@ -6,16 +6,16 @@ import BackButton from '../../components/BackButton'
 import FilterCollected from '../../components/Map/FilterCollected'
 import PlaceCard from '../../components/Map/PlaceCard'
 import { CollectedIcon, LocationIcon, NotCollectedIcon, OutOfOrderIcon } from '../../components/Map/Legend'
-import { locationsInCA, locationsInFL, locationsInOR, locationsInTX, locationsInWA } from '../../data'
 import { AboutALocationProps } from '../../App'
 import PageCarousel from '../../components/PageCarousel'
 import { useMapFilter } from '../../contexts/FilterCollected'
+import { get } from '../../utilities/axios'
 
 type Props = NativeStackScreenProps<RootStackParamList, 'About a Map'>
 
 const AboutAMap = ({route, navigation}: Props) => {
   // props
-  const { title, places } = route.params;
+  const { title, places, map_id } = route.params;
   const { selected } = useMapFilter();
 
   // states
@@ -25,17 +25,9 @@ const AboutAMap = ({route, navigation}: Props) => {
   const [endIndex, setEndIndex] = useState(5);
 
   useEffect(() => {
-    if (title === 'California') {
-      setLocations(locationsInCA);
-    } else if (title === 'Florida') {
-      setLocations(locationsInFL);
-    } else if (title === 'Texas') {
-      setLocations(locationsInTX);
-    } else if (title === 'Oregon') {
-      setLocations(locationsInOR);
-    } else if (title === 'Washington') {
-      setLocations(locationsInWA);
-    }
+    get(`/api/maps/${map_id}`)
+      .then(({ data }) => setLocations(data))
+      .catch((err) => console.log('error loading map info', err));
   }, [])
 
   const restartPageIndex = () => {

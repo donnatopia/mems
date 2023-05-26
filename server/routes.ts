@@ -1,6 +1,6 @@
 import express from 'express';
 import { requestGuides, requestMaps } from './controllers/Map/guides'
-import { requestAMap } from './controllers/Map/places';
+import { requestAMap } from './controllers/Map/maps';
 import { requestDetails } from './controllers/Map/details';
 
 const router = express.Router();
@@ -37,7 +37,7 @@ router.get('/guides/:guide_id', requestMaps);
 
 
 // Provides a list of locations for a given map
-router.get('/places/:map_id', requestAMap);
+router.get('/maps/:map_id', requestAMap);
 /*
 [
   {

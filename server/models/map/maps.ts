@@ -1,12 +1,6 @@
+import { PlaceProps } from '../../../types';
 import client from '../../db/connection';
 import { QueryResult } from 'pg';
-
-export interface PlaceProps {
-  place_id: number;
-  title: string;
-  status: number;
-  city: string;
-}
 
 export async function getAMap(map_id: number): Promise<PlaceProps[] | Error> {
   const map = {

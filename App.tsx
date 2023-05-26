@@ -21,6 +21,7 @@ export type RootStackParamList = {
     places: number
   };
   'About a Map': {
+    map_id: number,
     title: string,
     places: number,
   };
@@ -36,7 +37,7 @@ export type AboutALocationProps = {
   zip: number | null,
   website: string,
   designs: string,
-  notes: Note[];
+  notes: Note[] | null;
 };
 
 export type Note = {

@@ -57,6 +57,7 @@ const SelectAMap = ({ route, navigation }: Props) => {
             title={ mapLocation.title }
             subtitle={ `${mapLocation.places_collected + mapLocation.places_not_collected} places` }
             onPress={() => navigation.navigate('About a Map', {
+              map_id: mapLocation.map_id,
               title: mapLocation.title,
               places: mapLocation.places_collected + mapLocation.places_not_collected
             })}

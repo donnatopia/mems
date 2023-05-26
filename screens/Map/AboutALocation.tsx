@@ -95,7 +95,7 @@ const AboutALocation = ({route, navigation}: Props) => {
           <Text className='text-xl text-font-1 font-bold'>Notes</Text>
         </View>
 
-        { notes.map((note, index) => (
+        { notes ? notes.map((note, index) => (
           <View
             key={`note-${index}`}
             className='pt-2 pl-4 flex-col space-y-2'
@@ -110,7 +110,7 @@ const AboutALocation = ({route, navigation}: Props) => {
               </View>
             </View>
           </View>
-        ))}
+        )) : null }
 
         {/* Add a Note */}
         <View className='pt-2 pl-4 flex-row space-x-4 items-center'>

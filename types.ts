@@ -26,3 +26,14 @@ export interface MapProps {
   places_collected: number;
   places_not_collected: number;
 }
+
+/* ===================
+  Map
+====================== */
+
+export interface PlaceProps {
+  place_id: number;
+  title: string;
+  status: number;
+  city: string;
+}

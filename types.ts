@@ -12,8 +12,7 @@ export type NavigationProps = NativeStackScreenProps<RootStackParamList>
 ====================== */
 
 export interface GuideProps {
-  category: string;
-  guide_id: number | null;
+  guide_id: number;
   title: string;
   maps: number;
   places_collected: number;

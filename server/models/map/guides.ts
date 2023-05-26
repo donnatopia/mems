@@ -6,7 +6,6 @@ export async function getCustomGuides(): Promise<Array<GuideProps> | Error> {
   const customGuides = {
     name: 'get-custom-guides',
     text: `SELECT json_build_object(
-      'category', 'custom',
       'guide_id', main.id,
       'title', main.title,
       'maps', (SELECT COUNT(*) FROM guides g
@@ -41,8 +40,7 @@ export async function getAllGuide(): Promise<Array<GuideProps> | Error> {
   const allGuide = {
     name: 'get-all-guides',
     text: `SELECT json_build_object(
-      'category', 'all',
-      'guide_id', null,
+      'guide_id', -1,
       'title', 'All Maps',
       'maps', (SELECT COUNT(*) FROM guides g
         JOIN guides_maps gm ON g.id = gm.guide_id
@@ -74,8 +72,7 @@ export async function getFavGuide(): Promise<Array<GuideProps> | Error> {
   const favGuide = {
     name: 'get-fav-guides',
     text: `SELECT json_build_object(
-      'category', 'fav',
-      'guide_id', null,
+      'guide_id', 0,
       'title', 'Favorites',
       'maps', (SELECT COUNT(*) FROM guides g
         JOIN guides_maps gm ON g.id = gm.guide_id

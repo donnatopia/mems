@@ -38,13 +38,14 @@ const FindAMap = ({navigation}: NavigationProps) => {
       </View>
       <View className='px-4 pt-3 flex-row justify-between flex-wrap'>
         {
-          guides.map((guide, index) => (
+          guides.map((guide) => (
             <GuideCard
-              key={`guide-${index}`}
+              key={ guide.guide_id }
               title={ guide.title }
               maps={ guide.maps }
               places={ guide.places_collected + guide.places_not_collected }
               onPress={() => navigation.navigate('Select a Map', {
+                guide_id: guide.guide_id,
                 title: guide.title,
                 maps: guide.maps,
                 places: guide.places_collected + guide.places_not_collected

@@ -15,6 +15,7 @@ export type RootStackParamList = {
   'Map': undefined;
   'Find a Map': undefined;
   'Select a Map': {
+    guide_id: number,
     title: string,
     maps: number,
     places: number

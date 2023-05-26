@@ -1,25 +1,33 @@
 import { View, Text, SafeAreaView } from 'react-native'
-import React, { useLayoutEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import BackButton from '../../components/BackButton';
 import FilterCollected from '../../components/Map/FilterCollected';
 import PlaceCard from '../../components/Map/PlaceCard';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import { CompassIcon, ToBeSelectedIcon } from '../../components/Map/Legend';
-import { mapLocations } from '../../data';
 import PageCarousel from '../../components/PageCarousel';
+import { get } from '../../utilities/axios';
+import { MapProps } from '../../types';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Select a Map'>
 
 const SelectAMap = ({ route, navigation }: Props) => {
-  const { title, maps, places } = route.params;
+  const { title, maps, places, guide_id } = route.params;
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(5);
+  const [mapLocations, setMapLocations] = useState([] as MapProps[])
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerShown: false
     })
+  }, [])
+
+  useEffect(() => {
+    get(`/api/guides/${guide_id}`)
+      .then(({ data }) => setMapLocations(data))
+      .catch(err => console.log('error loading maps', err));
   }, [])
 
   return (
@@ -47,10 +55,10 @@ const SelectAMap = ({ route, navigation }: Props) => {
             leftIcon={<CompassIcon />}
             rightIcon={<ToBeSelectedIcon />}
             title={ mapLocation.title }
-            subtitle={ `${mapLocation.places} places` }
+            subtitle={ `${mapLocation.places_collected + mapLocation.places_not_collected} places` }
             onPress={() => navigation.navigate('About a Map', {
               title: mapLocation.title,
-              places: mapLocation.places
+              places: mapLocation.places_collected + mapLocation.places_not_collected
             })}
             rightIconOnPress={() => navigation.navigate('Map Home')}
           />

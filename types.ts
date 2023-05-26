@@ -18,3 +18,11 @@ export interface GuideProps {
   places_collected: number;
   places_not_collected: number;
 }
+
+export interface MapProps {
+  map_id: number;
+  title: string;
+  favorite: boolean;
+  places_collected: number;
+  places_not_collected: number;
+}

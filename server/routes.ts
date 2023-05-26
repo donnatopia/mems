@@ -1,6 +1,5 @@
 import express from 'express';
-import { requestGuides } from './controllers/Map/guides'
-import { requestAllMaps, requestCustomMaps, requestFavMaps } from './controllers/Map/maps';
+import { requestGuides, requestMaps } from './controllers/Map/guides'
 import { requestAMap } from './controllers/Map/places';
 import { requestDetails } from './controllers/Map/details';
 
@@ -23,9 +22,7 @@ router.get('/guides/', requestGuides)
 
 
 // Provides a list of maps for a given guide
-router.get('/maps/all', requestAllMaps);
-router.get('/maps/fav', requestFavMaps);
-router.get('/maps/:guide_id', requestCustomMaps);
+router.get('/guides/:guide_id', requestMaps);
 /*
 [
   {
